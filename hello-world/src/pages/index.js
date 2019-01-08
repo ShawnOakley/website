@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-// Intro point
+// Intro point for gatsby app
 export default () => (
     <div style={{ color: `purple` }}>
       <Link to="/contact/">Contact</Link> 
