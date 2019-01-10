@@ -3,6 +3,7 @@
 import * as THREE from 'three';
 import GeneralLights from './sceneSubjects/GeneralLights';
 import TestSubject from './sceneSubjects/TestSubject';
+import AnimatedLandscape from './sceneSubjects/AnimatedLandscape';
 
 export default function SceneManager(canvas) {
 
@@ -50,7 +51,8 @@ export default function SceneManager(canvas) {
     function createSceneSubjects(scene) {
         const sceneSubjects = [
             new GeneralLights(scene),
-            new TestSubject(scene)
+            new TestSubject(scene),
+            // new AnimatedLandscape(scene)
         ];
 
         return sceneSubjects;
