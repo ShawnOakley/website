@@ -8,12 +8,14 @@ import AnimatedLandscape from './sceneSubjects/AnimatedLandscape';
 export default function SceneManager(canvas) {
 
     const clock = new THREE.Clock();
+    this.canvas = canvas;
     
     const screenDimensions = {
         width: canvas.width,
         height: canvas.height
     }
-    
+    console.log('window', window);
+
     const scene = buildScene();
     const renderer = buildRender(screenDimensions);
     const camera = buildCamera(screenDimensions);
@@ -68,7 +70,7 @@ export default function SceneManager(canvas) {
     }
 
     this.onWindowResize = function() {
-        const { width, height } = canvas;
+        const { width, height } = this.canvas;
 
         screenDimensions.width = width;
         screenDimensions.height = height;
@@ -77,5 +79,7 @@ export default function SceneManager(canvas) {
         camera.updateProjectionMatrix();
         
         renderer.setSize(width, height);
+		console.log("CALLED++++++")
+
     }
 }

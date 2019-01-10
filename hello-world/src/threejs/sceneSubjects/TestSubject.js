@@ -14,4 +14,8 @@ export default function TestSubject(scene) {
 
 		mesh.scale.set(scale, scale, scale);
 	}
+
+    this.onWindowResize = function() {
+		console.log("CALLED++++++")
+    }	
 }
