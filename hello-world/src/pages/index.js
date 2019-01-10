@@ -1,5 +1,6 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from "react";
+import { Link } from "gatsby";
+import Header from './../components/header';
 // Intro point for gatsby app
 export default () => (
     <div style={{ color: `purple` }}>
