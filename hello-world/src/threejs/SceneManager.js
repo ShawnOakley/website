@@ -3,6 +3,8 @@
 import * as THREE from 'three';
 import GeneralLights from './sceneSubjects/GeneralLights';
 import TestSubject from './sceneSubjects/TestSubject';
+import StarrySkybox from './sceneSubjects/StarrySkybox';
+import SkyPlane from './sceneSubjects/SkyPlane';
 import AnimatedLandscape from './sceneSubjects/AnimatedLandscape';
 
 export default function SceneManager(canvas) {
@@ -14,7 +16,6 @@ export default function SceneManager(canvas) {
         width: canvas.width,
         height: canvas.height
     }
-    console.log('window', window);
 
     const scene = buildScene();
     const renderer = buildRender(screenDimensions);
@@ -23,7 +24,7 @@ export default function SceneManager(canvas) {
 
     function buildScene() {
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color("#000");
+        // scene.background = new THREE.Color("#000");
 
         return scene;
     }
@@ -44,9 +45,9 @@ export default function SceneManager(canvas) {
         const aspectRatio = width / height;
         const fieldOfView = 60;
         const nearPlane = 1;
-        const farPlane = 100; 
+        const farPlane = 300; 
         const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
-
+        camera.target = new THREE.Vector3( 0, 0, 0 );
         return camera;
     }
 
@@ -54,9 +55,9 @@ export default function SceneManager(canvas) {
         const sceneSubjects = [
             new GeneralLights(scene),
             // new TestSubject(scene),
-            new AnimatedLandscape(scene)
+            new AnimatedLandscape(scene),
+            new SkyPlane(scene),
         ];
-
         return sceneSubjects;
     }
 
@@ -79,7 +80,6 @@ export default function SceneManager(canvas) {
         camera.updateProjectionMatrix();
         
         renderer.setSize(width, height);
-		console.log("CALLED++++++")
 
     }
 }

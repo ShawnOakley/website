@@ -6,7 +6,7 @@ import vertexShader from './../shaders/vertex/vertexShader1.js';
 export default function AnimatedLandscape(scene) {
 	
     var fogColor = new THREE.Color( 0xd9b3ff )
-    scene.background = fogColor;
+    // scene.background = fogColor;
     scene.fog = new THREE.Fog(fogColor, 10, 400);
 
     var ambientLight = new THREE.AmbientLight(0xff66a3, 1);
@@ -35,7 +35,7 @@ export default function AnimatedLandscape(scene) {
     var terrain = new THREE.Mesh(geometry, material);
     terrain.position.z = -90;
     terrain.rotation.x = -Math.PI / 2
-    terrain.position.y = -5;
+    terrain.position.y = -15;
 
     new THREE.TextureLoader().load(palette, function(texture){
       terrain.material.uniforms.pallete.value = texture;
@@ -70,10 +70,20 @@ export default function AnimatedLandscape(scene) {
     
     // sky.material.uniforms.sunPosition.value.copy( sunSphere.position );
 
+    function map (value, start1, stop1, start2, stop2) {
+      return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1))
+    }
+  
+    function lerp (start, end, amt){
+      return (1 - amt) * start + amt * end
+    }
+
 	this.update = function(time) {
+    var width = window.innerWidth
+    var height = window.innerHeight    
     terrain.material.uniforms.time.value = time;
-    terrain.material.uniforms.distortCenter.value = time;
-    terrain.material.uniforms.roadWidth.value = time;
+    terrain.material.uniforms.distortCenter.value = map(0, 0, width, -0.1, 0.1);
+    terrain.material.uniforms.roadWidth.value = map(0, 0, height, -0.5, 2.5);
   }
   
 }
