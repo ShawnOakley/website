@@ -4,7 +4,19 @@ import fragmentShader from './../shaders/fragment/fragmentShader1.js';
 import vertexShader from './../shaders/vertex/vertexShader1.js';
 
 export default function AnimatedLandscape(scene) {
-	
+    this.mouseX = 650;
+    this.mouseY = 600;
+
+    // https://stackoverflow.com/questions/30860773/how-to-get-the-mouse-position-using-three-js    
+    const boundOnMousemove = function(e){
+      // this.mouseX = e.pageX/document.body.clientWidth;
+      // this.mouseY = e.pageY/document.body.clientHeight;
+      this.mouseX = e.pageX;
+      this.mouseY = e.pageY*2;      
+    }.bind(this)
+
+    document.onmousemove = boundOnMousemove;
+
     var fogColor = new THREE.Color( 0xd9b3ff )
     scene.fog = new THREE.Fog(fogColor, 10, 400);
 
@@ -53,8 +65,8 @@ export default function AnimatedLandscape(scene) {
     var width = window.innerWidth
     var height = window.innerHeight    
     terrain.material.uniforms.time.value = time;
-    terrain.material.uniforms.distortCenter.value = map(0, 0, width, -0.1, 0.1);
-    terrain.material.uniforms.roadWidth.value = map(0, 0, height, -0.5, 2.5);
+    terrain.material.uniforms.distortCenter.value = map(this.mouseX, 0, width, -0.1, 0.1);
+    terrain.material.uniforms.roadWidth.value = map(this.mouseX, 0, height, -0.5, 2.5);
   }
   
 }

@@ -6,6 +6,12 @@ export default function SkyPlane(scene) {
 
     var planeGeometry = new THREE.PlaneGeometry( 800, 800, 2 );
     planeGeometry.computeBoundingBox();
+    // 0xF00C6F
+    //  0CA352
+        //   vec4(mix(color3, color2, min(tan(vUv.y*vUv.x*(time)), cos(vUv.y*vUv.x*(time)))), 0.75);
+        // vec4(mix(color2, color1, min(tan(vUv.y*vUv.x*(time)), cos(vUv.y*vUv.x*(time)))), 0.75)
+        // +
+        // vec4(mix(color3, color2, min(tan(vUv.y*vUv.x*(time)), cos(vUv.y*vUv.x*(time)))), 0.75);    
     // https://stackoverflow.com/questions/52614371/apply-color-gradient-to-material-on-mesh-three-js
     // https://stackoverflow.com/questions/26965787/how-to-get-accurate-fragment-screen-position-like-gl-fragcood-in-vertex-shader
     var planeMaterial = new THREE.ShaderMaterial({
@@ -16,6 +22,9 @@ export default function SkyPlane(scene) {
           color2: {
             value: new THREE.Color(0x000000)
           },
+          color3: {
+            value: new THREE.Color(0xF71B64)
+          },          
           bboxMin: {
             value: planeGeometry.boundingBox.min
           },
@@ -41,13 +50,17 @@ export default function SkyPlane(scene) {
         fragmentShader: `
             uniform vec3 color1;
             uniform vec3 color2;
-        
+            uniform vec3 color3;
+            
             varying vec2 vUv;
             uniform float time;
             
             void main() {
             
-                gl_FragColor = vec4(mix(color2, color1, min(tan(vUv.y*vUv.x*(time)), cos(vUv.y*vUv.x*(time)))), 0.75);
+                gl_FragColor = 
+                    vec4(mix(color2, color1, min(tan(vUv.y*vUv.x*(time)), sin(vUv.y*vUv.x*(time)))), 0.75)
+                    +
+                    vec4(mix(color3, color2, min(tan(vUv.y*vUv.x*(time)), sin(vUv.y*vUv.x*(time)))), 0.75);
             }
         `,
           wireframe: false
@@ -76,13 +89,17 @@ export default function SkyPlane(scene) {
         fog:true
       });
 
-    var innerGeometry = new THREE.SphereGeometry( 45, 45, 45 );
+    var innerGeometry = new THREE.SphereGeometry( 40, 40, 45 );
     var innerCircle = new THREE.Mesh( innerGeometry, innerMaterial );
     scene.add( innerCircle );
-	innerCircle.position.set(0, 0, -198);
+    innerCircle.position.set(0, 10, -198);
+    innerCircle.rotation.y = -Math.PI/2
+    // innerCircle.rotation.x = Math.PI/2
+
 
     this.update = function(time) {
-        outerPlane.material.uniforms.time.value = time%100000;
+        outerPlane.material.uniforms.time.value = time%1000;
+        // 100000
         // plane.material.emissive.setHex( 0xFFFFFF )
     }    
 }
