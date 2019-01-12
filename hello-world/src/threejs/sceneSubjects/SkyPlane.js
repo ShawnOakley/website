@@ -1,23 +1,87 @@
 import * as THREE from 'three';
-// import frontPic from './../images/skybox-xpos.png';
-// import backPic from './../images/skybox-xneg.png';
-// import topPic from './../images/skybox-ypos.png';
-// import bottomPic from './../images/skybox-yneg.png';
-// import leftPic from './../images/skybox-zpos.png';
-// import rightPic from './../images/skybox-zneg.png';
-// import pano from './../images/equiRectangular.png'
-// import pic from './../images/desert.jpeg'
+import fragmentShader from './../shaders/fragment/fragmentShader1';
+import vertexShader from './../shaders/vertex/vertexShader1';
 
 export default function SkyPlane(scene) {
 
+    var planeGeometry = new THREE.PlaneGeometry( 1000, 1000, 1000 );
+    planeGeometry.computeBoundingBox();
+    // https://stackoverflow.com/questions/52614371/apply-color-gradient-to-material-on-mesh-three-js
+    var planeMaterial = new THREE.ShaderMaterial({
+        uniforms: {
+          color1: {
+            value: new THREE.Color(0xFF8C00)
+          },
+          color2: {
+            value: new THREE.Color(0x000000)
+          },
+          bboxMin: {
+            value: planeGeometry.boundingBox.min
+          },
+          bboxMax: {
+            value: planeGeometry.boundingBox.max
+          },
+          time: {
+            value: 0
+          }            
+        },
+        vertexShader: `
+            uniform vec3 bboxMin;
+            uniform vec3 bboxMax;
+        
+            varying vec2 vUv;
+        
+            void main() {
+            vUv.y = (position.y - bboxMin.y) / (bboxMax.y - bboxMin.y);
+            vUv.x = (position.x - bboxMin.x) / (bboxMax.x - bboxMin.x);
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+            }
+        `,
+        fragmentShader: `
+            uniform vec3 color1;
+            uniform vec3 color2;
+        
+            varying vec2 vUv;
+            uniform float time;
+            
+            void main() {
+            
+                gl_FragColor = vec4(mix(color1, color2, vUv.x - time), 0.75);
+            }
+        `,
+          wireframe: true
+      });
+    var outerPlane = new THREE.Mesh( planeGeometry, planeMaterial );
+    scene.add( outerPlane );
+    outerPlane.position.set(0, 0, -205);
     
-    var geometry = new THREE.PlaneGeometry( 100, 100, 100 );
-    var material = new THREE.MeshPhongMaterial( {color: 0xffff00, emissive: 0xFF4500, emissiveIntensity: 1000, side: THREE.DoubleSide} );
-    var plane = new THREE.Mesh( geometry, material );
-    scene.add( plane );
-	plane.position.set(0, 0, -200);
+    var outerGeometry = new THREE.CircleGeometry( 100, 100, 100 );
+    var outerMaterial = new THREE.MeshPhongMaterial( {color: 0xffff00, emissive: 0xffff00} );
+    var outerCircle = new THREE.Mesh( outerGeometry, outerMaterial );
+    scene.add( outerCircle );
+	outerCircle.position.set(0, 0, -200);
 
-    this.update = function() {
+    var uniforms = {
+        color: new THREE.Uniform(new THREE.Vector3(1,0,0.023529411764705882)),
+        lightPosition: new THREE.Uniform(new THREE.Vector3(-10, -10, -10)),
+        edgeColor:new THREE.Uniform(new THREE.Vector3(0.023529411764705882, 0, 1))
+      }
+
+    var innerMaterial = new THREE.ShaderMaterial({
+        uniforms: THREE.UniformsUtils.merge([ THREE.ShaderLib.basic.uniforms, uniforms ]),
+        vertexShader,
+        fragmentShader,
+        wireframe:false,
+        fog:true
+      });
+
+    var innerGeometry = new THREE.SphereGeometry( 45, 45, 45 );
+    var innerCircle = new THREE.Mesh( innerGeometry, innerMaterial );
+    scene.add( innerCircle );
+	innerCircle.position.set(0, 0, -198);
+
+    this.update = function(time) {
+        outerPlane.material.uniforms.time.value = time;
         // plane.material.emissive.setHex( 0xFFFFFF )
     }    
 }

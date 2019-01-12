@@ -53,7 +53,7 @@ export default function SceneManager(canvas) {
 
     function createSceneSubjects(scene) {
         const sceneSubjects = [
-            new GeneralLights(scene),
+            // new GeneralLights(scene),
             // new TestSubject(scene),
             new AnimatedLandscape(scene),
             new SkyPlane(scene),

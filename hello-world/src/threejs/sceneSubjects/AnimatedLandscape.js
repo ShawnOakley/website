@@ -23,7 +23,8 @@ export default function AnimatedLandscape(scene) {
       maxHeight: { type: "f", value: 10.0 },
       color:new THREE.Color(1, 1, 1)
     }
-    
+
+    // https://blog.cjgammon.com/threejs-custom-shader-material
     var material = new THREE.ShaderMaterial({
       uniforms: THREE.UniformsUtils.merge([ THREE.ShaderLib.basic.uniforms, uniforms ]),
       vertexShader,
