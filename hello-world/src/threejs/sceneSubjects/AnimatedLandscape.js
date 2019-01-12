@@ -6,11 +6,7 @@ import vertexShader from './../shaders/vertex/vertexShader1.js';
 export default function AnimatedLandscape(scene) {
 	
     var fogColor = new THREE.Color( 0xd9b3ff )
-    // scene.background = fogColor;
     scene.fog = new THREE.Fog(fogColor, 10, 400);
-
-    var ambientLight = new THREE.AmbientLight(0xff66a3, 1);
-    scene.add(ambientLight)
 
     var geometry = new THREE.PlaneBufferGeometry(100, 400, 400, 400);
 
@@ -44,32 +40,6 @@ export default function AnimatedLandscape(scene) {
     });
 
     scene.add(terrain)    
-
-    // var sky = new THREE.Sky();
-    // sky.scale.setScalar( 450000 );
-    // sky.material.uniforms.turbidity.value = 20;
-    // sky.material.uniforms.rayleigh.value = 0;
-    // sky.material.uniforms.luminance.value = 1;
-    // sky.material.uniforms.mieCoefficient.value = 0.01;
-    // sky.material.uniforms.mieDirectionalG.value = 0.8;
-    
-    // scene.add( sky );
-
-    // var sunSphere = new THREE.Mesh(
-    //   new THREE.SphereBufferGeometry( 20000, 16, 8 ),
-    //   new THREE.MeshBasicMaterial( { color: 0xffffff } )
-    // );
-    // sunSphere.visible = false;
-    // scene.add( sunSphere );
-    
-    // var theta = Math.PI * ( -0.02 );
-    // var phi = 2 * Math.PI * ( -.25 );
-
-    // sunSphere.position.x = 400000 * Math.cos( phi );
-    // sunSphere.position.y = 400000 * Math.sin( phi ) * Math.sin( theta );
-    // sunSphere.position.z = 400000 * Math.sin( phi ) * Math.cos( theta );
-    
-    // sky.material.uniforms.sunPosition.value.copy( sunSphere.position );
 
     function map (value, start1, stop1, start2, stop2) {
       return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1))

@@ -4,9 +4,10 @@ import vertexShader from './../shaders/vertex/vertexShader1';
 
 export default function SkyPlane(scene) {
 
-    var planeGeometry = new THREE.PlaneGeometry( 1000, 1000, 1000 );
+    var planeGeometry = new THREE.PlaneGeometry( 800, 800, 2 );
     planeGeometry.computeBoundingBox();
     // https://stackoverflow.com/questions/52614371/apply-color-gradient-to-material-on-mesh-three-js
+    // https://stackoverflow.com/questions/26965787/how-to-get-accurate-fragment-screen-position-like-gl-fragcood-in-vertex-shader
     var planeMaterial = new THREE.ShaderMaterial({
         uniforms: {
           color1: {
@@ -46,10 +47,10 @@ export default function SkyPlane(scene) {
             
             void main() {
             
-                gl_FragColor = vec4(mix(color1, color2, vUv.x - time), 0.75);
+                gl_FragColor = vec4(mix(color2, color1, min(tan(vUv.y*vUv.x*(time)), cos(vUv.y*vUv.x*(time)))), 0.75);
             }
         `,
-          wireframe: true
+          wireframe: false
       });
     var outerPlane = new THREE.Mesh( planeGeometry, planeMaterial );
     scene.add( outerPlane );
@@ -81,7 +82,7 @@ export default function SkyPlane(scene) {
 	innerCircle.position.set(0, 0, -198);
 
     this.update = function(time) {
-        outerPlane.material.uniforms.time.value = time;
+        outerPlane.material.uniforms.time.value = time%100000;
         // plane.material.emissive.setHex( 0xFFFFFF )
     }    
 }
