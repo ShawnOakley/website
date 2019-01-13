@@ -8,6 +8,8 @@ export default function SkyPlane(scene) {
     planeGeometry.computeBoundingBox();
     // 0xF00C6F
     //  0CA352
+    // 0xFF8C00
+    // 0xF71B64
         //   vec4(mix(color3, color2, min(tan(vUv.y*vUv.x*(time)), cos(vUv.y*vUv.x*(time)))), 0.75);
         // vec4(mix(color2, color1, min(tan(vUv.y*vUv.x*(time)), cos(vUv.y*vUv.x*(time)))), 0.75)
         // +
@@ -17,13 +19,13 @@ export default function SkyPlane(scene) {
     var planeMaterial = new THREE.ShaderMaterial({
         uniforms: {
           color1: {
-            value: new THREE.Color(0xFF8C00)
+            value: new THREE.Color(0xf61414)
           },
           color2: {
-            value: new THREE.Color(0x000000)
+            value: new THREE.Color(0xf69114)
           },
           color3: {
-            value: new THREE.Color(0xF71B64)
+            value: new THREE.Color(0x2abbd0)
           },          
           bboxMin: {
             value: planeGeometry.boundingBox.min
@@ -58,9 +60,9 @@ export default function SkyPlane(scene) {
             void main() {
             
                 gl_FragColor = 
-                    vec4(mix(color2, color1, min(tan(vUv.y*vUv.x*(time)), sin(vUv.y*vUv.x*(time)))), 0.75)
+                    vec4(mix(color2, color1, max(cos(vUv.y*(time)), sin(vUv.x*(time)))), 0.75)
                     +
-                    vec4(mix(color3, color2, min(tan(vUv.y*vUv.x*(time)), sin(vUv.y*vUv.x*(time)))), 0.75);
+                    vec4(mix(color3, color2, max(sin(vUv.x*(time)), sin(vUv.y*(time)))), 0.75);
             }
         `,
           wireframe: false
@@ -69,7 +71,7 @@ export default function SkyPlane(scene) {
     scene.add( outerPlane );
     outerPlane.position.set(0, 0, -205);
     
-    var outerGeometry = new THREE.CircleGeometry( 100, 100, 100 );
+    var outerGeometry = new THREE.CircleGeometry( 75, 75, 100 );
     var outerMaterial = new THREE.MeshPhongMaterial( {color: 0xffff00, emissive: 0xffff00} );
     var outerCircle = new THREE.Mesh( outerGeometry, outerMaterial );
     scene.add( outerCircle );
