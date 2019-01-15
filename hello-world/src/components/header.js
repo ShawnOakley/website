@@ -1,6 +1,7 @@
 import React from "react"
 import ReactTooltip from 'react-tooltip'
 
+// Icons for links
 import { Icon } from 'react-icons-kit'
 import {linkedin} from 'react-icons-kit/icomoon/linkedin'
 import {instagram} from 'react-icons-kit/icomoon/instagram'
