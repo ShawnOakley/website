@@ -30,15 +30,22 @@ export default function SceneManager(canvas) {
     }
 
     function buildRender({ width, height }) {
-        const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true }); 
-        const DPR = (window.devicePixelRatio) ? window.devicePixelRatio : 1;
-        renderer.setPixelRatio(DPR);
-        renderer.setSize(width, height);
+        try {
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true }); 
+            const DPR = (window.devicePixelRatio) ? window.devicePixelRatio : 1;
+            renderer.setPixelRatio(DPR);
+            renderer.setSize(width, height);
+    
+            renderer.gammaInput = true;
+            renderer.gammaOutput = true; 
+    
+            return renderer;
+        }
 
-        renderer.gammaInput = true;
-        renderer.gammaOutput = true; 
+        catch(err) {
+            console.log(err)
+        }
 
-        return renderer;
     }
 
     function buildCamera({ width, height }) {

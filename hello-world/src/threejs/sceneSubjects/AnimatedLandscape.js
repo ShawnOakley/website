@@ -62,11 +62,18 @@ export default function AnimatedLandscape(scene) {
     }
 
 	this.update = function(time) {
-    var width = window.innerWidth
-    var height = window.innerHeight    
-    terrain.material.uniforms.time.value = time;
-    terrain.material.uniforms.distortCenter.value = map(this.mouseX, 0, width, -0.1, 0.1);
-    terrain.material.uniforms.roadWidth.value = map(this.mouseX, 0, height, -0.5, 2.5);
+    try {
+      var width = window.innerWidth
+      var height = window.innerHeight    
+      terrain.material.uniforms.time.value = time;
+      terrain.material.uniforms.distortCenter.value = map(this.mouseX, 0, width, -0.1, 0.1);
+      terrain.material.uniforms.roadWidth.value = map(this.mouseX, 0, height, -0.5, 2.5);
+    }
+
+    catch (err) {
+      console.log(err);
+    }
+
   }
   
 }

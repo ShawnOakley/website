@@ -14,9 +14,14 @@ export default containerElement => {
     }
 
     function bindEventListeners() {
-        window.onResize = resizeCanvas;
-        window.addEventListener('resize', resizeCanvas, false );    
-        resizeCanvas();
+        try {
+            window.onResize = resizeCanvas;
+            window.addEventListener('resize', resizeCanvas, false );    
+            resizeCanvas();
+        }
+        catch(err) {
+            console.log(err)
+          }        
     }
 
     function resizeCanvas() {
