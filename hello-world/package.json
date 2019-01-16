@@ -20,8 +20,7 @@
     "react-dom": "^16.5.1",
     "react-icons-kit": "^1.2.1",
     "react-tooltip": "^3.9.2",
-    "three": "^0.100.0",
-    "webfontloader": "^1.6.28"
+    "three": "^0.100.0"
   },
   "repository": {
     "type": "git",

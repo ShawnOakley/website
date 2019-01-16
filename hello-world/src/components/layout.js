@@ -1,7 +1,6 @@
 import React from "react"
 import { Global, css } from "@emotion/core"
 import styled from "@emotion/styled"
-import WebFont from 'webfontloader';
 
 const Wrapper = styled("div")`
   width:100%;
@@ -10,11 +9,11 @@ const Wrapper = styled("div")`
 `
 
 
-WebFont.load({
-  google: {
-    families: ['Josefin Web:300', 'sans-serif']
-  }
-});
+// WebFont.load({
+//   google: {
+//     families: ['Josefin Web:300', 'sans-serif']
+//   }
+// });
 
 export default ({ children }) => (
   <Wrapper>
