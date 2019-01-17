@@ -10,6 +10,10 @@ import {stackoverflow} from 'react-icons-kit/icomoon/stackoverflow'
 import {terminal} from 'react-icons-kit/icomoon/terminal'
 import {mail2} from 'react-icons-kit/icomoon/mail2'
 
+// https://www.linkedin.com/in/zzz12345/
+// https://medium.com/me/publications
+// https://stackoverflow.com/users/2152944/shawn
+// https://www.instagram.com/the_real_planey_mcplaneface/?hl=en
 
 export default class Header extends React.Component {
     constructor(props) {
@@ -118,7 +122,7 @@ export default class Header extends React.Component {
                 onMouseLeave={()=>this.turnOffHoverState('instagram')}  
                 data-tip='Instagram Account'                                              
             ><Icon icon={instagram} /></div>   
-            <div
+            {/* <div
                 style={!hoverState['mail2'] ? {
                     marginRight: '4px',
                     cursor: 'pointer'
@@ -130,7 +134,7 @@ export default class Header extends React.Component {
                 onMouseEnter={()=>this.turnOnHoverState('mail2')}   
                 onMouseLeave={()=>this.turnOffHoverState('mail2')}  
                 data-tip='Contact Me'                                                      
-            ><Icon icon={mail2} /></div>                              
+            ><Icon icon={mail2} /></div>                               */}
         </div>
 
         </div>
