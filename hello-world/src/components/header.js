@@ -10,11 +10,6 @@ import {stackoverflow} from 'react-icons-kit/icomoon/stackoverflow'
 import {terminal} from 'react-icons-kit/icomoon/terminal'
 import {mail2} from 'react-icons-kit/icomoon/mail2'
 
-// https://www.linkedin.com/in/zzz12345/
-// https://medium.com/me/publications
-// https://stackoverflow.com/users/2152944/shawn
-// https://www.instagram.com/the_real_planey_mcplaneface/?hl=en
-
 export default class Header extends React.Component {
     constructor(props) {
         super(props); 
@@ -57,7 +52,7 @@ export default class Header extends React.Component {
             }}    
         >Shawn Oakley</div>
         <div style={{display:'flex'}}>
-        <div
+        {/* <a
                 style={!hoverState['terminal'] ? {
                     marginRight: '4px',
                     cursor: 'pointer'
@@ -69,8 +64,8 @@ export default class Header extends React.Component {
                 onMouseEnter={()=>this.turnOnHoverState('terminal')}          
                 onMouseLeave={()=>this.turnOffHoverState('terminal')}
                 data-tip='Personal Projects'          
-        ><Icon icon={terminal} /></div>
-            <div
+        ><Icon icon={terminal} /></a> */}
+            <a
                 style={!hoverState['linkedin'] ? {
                     marginRight: '4px',
                     cursor: 'pointer'
@@ -81,9 +76,10 @@ export default class Header extends React.Component {
                 }}          
                 onMouseEnter={()=>this.turnOnHoverState('linkedin')}          
                 onMouseLeave={()=>this.turnOffHoverState('linkedin')} 
-                data-tip='LinkedIn Profile'                   
-            ><Icon icon={linkedin} /></div>
-            <div
+                data-tip='LinkedIn Profile'
+                href="https://www.linkedin.com/in/zzz12345/"                   
+            ><Icon icon={linkedin} /></a>
+            <a
                 style={!hoverState['blog'] ? {
                     marginRight: '4px',
                     cursor: 'pointer'
@@ -94,9 +90,10 @@ export default class Header extends React.Component {
                 }}          
                 onMouseEnter={()=>this.turnOnHoverState('blog')}   
                 onMouseLeave={()=>this.turnOffHoverState('blog')} 
-                data-tip='Personal Blog/Writing'                            
-            ><Icon icon={blog} /></div>   
-            <div
+                data-tip='Personal Blog/Writing'  
+                href="https://medium.com/me/publications"                          
+            ><Icon icon={blog} /></a>   
+            <a
                 style={!hoverState['stackoverflow'] ? {
                     marginRight: '4px',
                     cursor: 'pointer'
@@ -107,9 +104,10 @@ export default class Header extends React.Component {
                 }}          
                 onMouseEnter={()=>this.turnOnHoverState('stackoverflow')} 
                 onMouseLeave={()=>this.turnOffHoverState('stackoverflow')}
-                data-tip='Stack Overflow Profile'                                      
-            ><Icon icon={stackoverflow} /></div>  
-            <div
+                data-tip='Stack Overflow Profile' 
+                href="https://stackoverflow.com/users/2152944/shawn"                                     
+            ><Icon icon={stackoverflow} /></a>  
+            <a
                 style={!hoverState['instagram'] ? {
                     marginRight: '4px',
                     cursor: 'pointer'
@@ -120,8 +118,9 @@ export default class Header extends React.Component {
                 }}          
                 onMouseEnter={()=>this.turnOnHoverState('instagram')} 
                 onMouseLeave={()=>this.turnOffHoverState('instagram')}  
-                data-tip='Instagram Account'                                              
-            ><Icon icon={instagram} /></div>   
+                data-tip='Instagram Account'
+                href="https://www.instagram.com/the_real_planey_mcplaneface/?hl=en"                                              
+            ><Icon icon={instagram} /></a>   
             {/* <div
                 style={!hoverState['mail2'] ? {
                     marginRight: '4px',
