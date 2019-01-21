@@ -1,5 +1,6 @@
 import React from "react"
 import ReactTooltip from 'react-tooltip'
+import { Link } from "gatsby"
 
 // Icon imports for links
 import { Icon } from 'react-icons-kit'
@@ -53,7 +54,7 @@ export default class Header extends React.Component {
             }}    
         >Shawn Oakley</div>
         <div style={{display:'flex'}}>
-        {/* <a
+        <div
                 style={!hoverState['terminal'] ? {
                     marginRight: '4px',
                     cursor: 'pointer'
@@ -65,7 +66,7 @@ export default class Header extends React.Component {
                 onMouseEnter={()=>this.turnOnHoverState('terminal')}          
                 onMouseLeave={()=>this.turnOffHoverState('terminal')}
                 data-tip='Personal Projects'          
-        ><Icon icon={terminal} /></a> */}
+        ><Link to="/projects/"><Icon icon={terminal} /></Link></div>
             <a
                 style={!hoverState['linkedin'] ? {
                     marginRight: '4px',
