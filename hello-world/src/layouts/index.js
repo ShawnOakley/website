@@ -1,4 +1,5 @@
 import React from "react"
+import Transition from "./../components/transition";
 import { Global, css } from "@emotion/core"
 import styled from "@emotion/styled"
 
@@ -8,6 +9,7 @@ const Wrapper = styled("div")`
   height:100%;
 `
 
+// https://divdev.io/animating-gatsby-pt/
 
 // WebFont.load({
 //   google: {
@@ -15,7 +17,7 @@ const Wrapper = styled("div")`
 //   }
 // });
 
-export default ({ children }) => (
+export default ({ children, location }) => (
   <Wrapper>
     <Global
       styles={css`
@@ -46,6 +48,8 @@ export default ({ children }) => (
         }
       `}
     />
-    {children}
+      <Transition location={location}>
+        {children}
+      </Transition>  
   </Wrapper>
 )
