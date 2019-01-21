@@ -17,6 +17,7 @@
     "EventEmitter": "^1.0.0",
     "gatsby": "^2.0.76",
     "gatsby-plugin-emotion": "^4.0.1",
+    "gatsby-plugin-layout": "^1.0.11",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-icons-kit": "^1.2.1",
