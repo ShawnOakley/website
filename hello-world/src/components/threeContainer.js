@@ -4,8 +4,8 @@ import threeEntryPoint from './../threejs/threeEntryPoint';
 
 export default class ThreeContainer extends Component {
   componentDidMount() {
-    const { sceneName } = this.props;
-    threeEntryPoint(this.threeRootElement, sceneName);
+    const { sceneName, eventBus } = this.props;
+    threeEntryPoint(this.threeRootElement, sceneName, eventBus);
   }
   render () {
       return (

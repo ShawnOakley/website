@@ -1,8 +1,16 @@
 import React from "react"
-import Header from "../components/header"
+import EventEmitter from "EventEmitter";
+import Layout from "../components/layout";
+import EventManager from "../components/eventManager";
+import ThreeContainer from './../components/threeContainer';
+import SCENE_CONSTANTS from './../constants/scenes';
+
+let EventBus = new EventEmitter();
 
 export default () => (
-  <div style={{ color: `teal` }}>
-    <p>Projects go here</p>
-  </div>
+  <Layout>
+    <EventManager eventBus={EventBus}>
+      <ThreeContainer sceneName={SCENE_CONSTANTS.SCENE_PROJECTS} eventBus={EventBus} />
+    </EventManager>
+  </Layout>
 )

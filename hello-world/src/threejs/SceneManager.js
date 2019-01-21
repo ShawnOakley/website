@@ -10,7 +10,7 @@ import StarrySkybox from './sceneSubjects/StarrySkybox';
 import SkyPlane from './sceneSubjects/SkyPlane';
 import AnimatedLandscape from './sceneSubjects/AnimatedLandscape';
 
-export default function SceneManager(canvas, sceneName) {
+export default function SceneManager(canvas, sceneName, eventBus) {
 
     const clock = new THREE.Clock();
     this.canvas = canvas;
@@ -25,10 +25,13 @@ export default function SceneManager(canvas, sceneName) {
     const camera = buildCamera(screenDimensions);
     const sceneSubjects = createSceneSubjects(scene, sceneName);
 
+    setTimeout(()=>{
+        eventBus.emit('test')
+    }, 1000)
+
     function buildScene() {
         const scene = new THREE.Scene();
         // scene.background = new THREE.Color("#000");
-
         return scene;
     }
 
@@ -72,6 +75,10 @@ export default function SceneManager(canvas, sceneName) {
                     new AnimatedLandscape(scene),
                     new SkyPlane(scene),                    
                 ]
+                case SCENE_CONSTANTS.SCENE_PROJECTS: 
+                return [
+                    new SkyPlane(scene),                    
+                ]                
             default:
                 return [];
         }

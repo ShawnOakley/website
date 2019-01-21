@@ -1,8 +1,8 @@
 import SceneManager from './SceneManager';
 
-export default (containerElement, sceneName) => {
+export default (containerElement, sceneName, eventBus) => {
     const canvas = createCanvas(document, containerElement);
-    const sceneManager = new SceneManager(canvas, sceneName);
+    const sceneManager = new SceneManager(canvas, sceneName, eventBus);
 
     bindEventListeners();
     render();
