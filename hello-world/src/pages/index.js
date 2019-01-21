@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import Header from './../components/header';
 import ThreeContainer from './../components/threeContainer';
 import Layout from "../components/layout"
+import SCENE_CONSTANTS from './../constants/scenes';
 
 
 
@@ -11,6 +12,6 @@ export default () => (
     <Layout>
       <Link to="/contact/">Contact</Link> 
       <Header headerText="Hello Gatsby!" />
-      <ThreeContainer />
+      <ThreeContainer sceneName={SCENE_CONSTANTS.SCENE_INTRO}/>
     </Layout>
   )

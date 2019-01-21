@@ -1,13 +1,16 @@
 // https://medium.com/@soffritti.pierfrancesco/how-to-organize-the-structure-of-a-three-js-project-77649f58fa3f
 // https://github.com/PierfrancescoSoffritti/Doodling/blob/master/14.%20Three.js%20template/js/SceneManager.js
 import * as THREE from 'three';
+
+import SCENE_CONSTANTS from './../constants/scenes';
+
 import GeneralLights from './sceneSubjects/GeneralLights';
 import TestSubject from './sceneSubjects/TestSubject';
 import StarrySkybox from './sceneSubjects/StarrySkybox';
 import SkyPlane from './sceneSubjects/SkyPlane';
 import AnimatedLandscape from './sceneSubjects/AnimatedLandscape';
 
-export default function SceneManager(canvas) {
+export default function SceneManager(canvas, sceneName) {
 
     const clock = new THREE.Clock();
     this.canvas = canvas;
@@ -20,7 +23,7 @@ export default function SceneManager(canvas) {
     const scene = buildScene();
     const renderer = buildRender(screenDimensions);
     const camera = buildCamera(screenDimensions);
-    const sceneSubjects = createSceneSubjects(scene);
+    const sceneSubjects = createSceneSubjects(scene, sceneName);
 
     function buildScene() {
         const scene = new THREE.Scene();
@@ -58,12 +61,20 @@ export default function SceneManager(canvas) {
         return camera;
     }
 
-    function createSceneSubjects(scene) {
-        const sceneSubjects = [
-            new AnimatedLandscape(scene),
-            new SkyPlane(scene),
-        ];
-        return sceneSubjects;
+    function createSceneSubjects(scene, sceneName) {
+        // const sceneSubjects = [
+        //     new AnimatedLandscape(scene),
+        //     new SkyPlane(scene),
+        // ];
+        switch (sceneName) {
+            case SCENE_CONSTANTS.SCENE_INTRO: 
+                return [
+                    new AnimatedLandscape(scene),
+                    new SkyPlane(scene),                    
+                ]
+            default:
+                return [];
+        }
     }
 
     this.update = function() {
