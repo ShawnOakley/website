@@ -10,7 +10,8 @@ import {blog} from 'react-icons-kit/icomoon/blog'
 import {stackoverflow} from 'react-icons-kit/icomoon/stackoverflow'
 import {terminal} from 'react-icons-kit/icomoon/terminal'
 import {mail2} from 'react-icons-kit/icomoon/mail2'
-
+// To Do:
+// Add github link
 
 export default class Header extends React.Component {
     constructor(props) {
@@ -94,7 +95,20 @@ export default class Header extends React.Component {
                 onMouseLeave={()=>this.turnOffHoverState('blog')} 
                 data-tip='Personal Blog/Writing'  
                 href="https://medium.com/me/publications"                          
-            ><Icon icon={blog} /></a>   
+            ><Icon icon={blog} /></a> 
+            <div
+                style={!hoverState['terminal'] ? {
+                    marginRight: '4px',
+                    cursor: 'pointer'
+                } : {
+                    marginRight: '4px',
+                    cursor: 'pointer',
+                    color: 'black'                
+                }}
+                onMouseEnter={()=>this.turnOnHoverState('blog')}          
+                onMouseLeave={()=>this.turnOffHoverState('blog')}
+                data-tip='Essays/articles'          
+            ><Link to="/writings/"><Icon icon={blog} /></Link></div>  
             <a
                 style={!hoverState['stackoverflow'] ? {
                     marginRight: '4px',

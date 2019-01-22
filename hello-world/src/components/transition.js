@@ -6,6 +6,9 @@ import {
     Transition as ReactTransition,
 } from "react-transition-group"
 
+// GOAL:
+// https://medium.com/appifycanada/animations-with-reacttransitiongroup-4972ad7da286
+
 //This variable will be responsible for our animation duration
 const timeout = 500
 
@@ -23,6 +26,14 @@ const getTransitionStyles = {
         transition: `all ${timeout}ms ease-in-out`,
         opacity: 0
     },
+    enteringTransitionDispay: {
+        position: 'absolute',
+        opacity: 1,
+    },
+    exitingTransitionDisplay: {
+        transition: `all ${timeout}ms ease-in-out`,
+        opacity: 0
+    }
 }
 
 class Transition extends React.PureComponent {
@@ -50,8 +61,18 @@ class Transition extends React.PureComponent {
                                 ...getTransitionStyles[status],
                             }}
                         >
-                            {(status === 'entering' || status === 'exiting') && 'HI'}
-                            {children}
+                            {
+                                // (status === 'entering' || status === 'exiting') && 
+                                // <div
+                                // style={{
+                                //     ...getTransitionStyles[`${status}TransitionDisplay`],
+                                // }}
+                                // >HI</div>
+                            }
+                            {
+                                // !(status === 'entering' || status === 'exiting') && 
+                                children
+                            }
                         </div>
                     )}
                 </ReactTransition>
