@@ -24,7 +24,7 @@ const getTransitionStyles = {
     },
     exiting: {
         transition: `all ${timeout}ms ease-in-out`,
-        opacity: 0
+        opacity: 0,
     },
     enteringTransitionDispay: {
         position: 'absolute',

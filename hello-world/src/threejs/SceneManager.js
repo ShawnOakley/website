@@ -4,8 +4,8 @@ import * as THREE from 'three';
 
 import SCENE_CONSTANTS from './../constants/scenes';
 
-import GeneralLights from './sceneSubjects/GeneralLights';
-import TestSubject from './sceneSubjects/TestSubject';
+// import GeneralLights from './sceneSubjects/GeneralLights';
+// import TestSubject from './sceneSubjects/TestSubject';
 import StarrySkybox from './sceneSubjects/StarrySkybox';
 import SkyPlane from './sceneSubjects/SkyPlane';
 import AnimatedLandscape from './sceneSubjects/AnimatedLandscape';
@@ -22,7 +22,8 @@ export default function SceneManager(canvas, sceneName, eventBus) {
 
     const scene = buildScene();
     const renderer = buildRender(screenDimensions);
-    const camera = buildCamera(screenDimensions);
+    const camera = buildCamera(screenDimensions, sceneName);
+    const controls = buildControls(camera, sceneName);
     const sceneSubjects = createSceneSubjects(scene, sceneName);
 
     setTimeout(()=>{
@@ -31,7 +32,6 @@ export default function SceneManager(canvas, sceneName, eventBus) {
 
     function buildScene() {
         const scene = new THREE.Scene();
-        // scene.background = new THREE.Color("#000");
         return scene;
     }
 
@@ -54,30 +54,40 @@ export default function SceneManager(canvas, sceneName, eventBus) {
 
     }
 
-    function buildCamera({ width, height }) {
-        const aspectRatio = width / height;
-        const fieldOfView = 60;
-        const nearPlane = 1;
-        const farPlane = 300; 
-        const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
-        camera.target = new THREE.Vector3( 0, 0, 0 );
-        return camera;
+    function buildControls(camera, sceneName) {
+        switch (sceneName) {                
+            case SCENE_CONSTANTS.SCENE_PROJECTS: 
+                var orbitControls = new THREE.OrbitControls(camera)
+                orbitControls.autoRotate = true;
+            default:
+                return null;
+        }        
+    }
+
+    function buildCamera({ width, height }, sceneName) {
+        switch (sceneName) {                
+            default:
+                const aspectRatio = width / height;
+                const fieldOfView = 60;
+                const nearPlane = 1;
+                const farPlane = 300; 
+                const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
+                camera.target = new THREE.Vector3( 0, 0, 0 );
+                return camera;
+        }
     }
 
     function createSceneSubjects(scene, sceneName) {
-        // const sceneSubjects = [
-        //     new AnimatedLandscape(scene),
-        //     new SkyPlane(scene),
-        // ];
+
         switch (sceneName) {
             case SCENE_CONSTANTS.SCENE_INTRO: 
                 return [
                     new AnimatedLandscape(scene),
                     new SkyPlane(scene),                    
-                ]
-                case SCENE_CONSTANTS.SCENE_PROJECTS: 
+                ];
+            case SCENE_CONSTANTS.SCENE_PROJECTS: 
                 return [
-                    new SkyPlane(scene),                    
+                    new StarrySkybox(scene),                    
                 ]                
             default:
                 return [];
@@ -91,6 +101,10 @@ export default function SceneManager(canvas, sceneName, eventBus) {
         	sceneSubjects[i].update(elapsedTime);
 
         renderer.render(scene, camera);
+        if (controls) {
+            var delta = clock.getDelta();
+            controls.update(delta);
+        }
     }
 
     this.onWindowResize = function() {
