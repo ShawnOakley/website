@@ -29,7 +29,7 @@ export default function SceneManager(canvas, sceneName, eventBus) {
     controls.update();  
     // need to set the camera to get the positions to update successfully               
     camera.position.set( 0, 20, 20 );          
-    const sceneSubjects = createSceneSubjects(scene, sceneName);
+    const sceneSubjects = createSceneSubjects(scene, sceneName, camera);
 
     setTimeout(()=>{
         eventBus.emit('test')
@@ -87,7 +87,7 @@ export default function SceneManager(canvas, sceneName, eventBus) {
         }
     }
 
-    function createSceneSubjects(scene, sceneName) {
+    function createSceneSubjects(scene, sceneName, camera) {
 
         switch (sceneName) {
             case SCENE_CONSTANTS.SCENE_INTRO: 
@@ -97,7 +97,7 @@ export default function SceneManager(canvas, sceneName, eventBus) {
                 ];
             case SCENE_CONSTANTS.SCENE_PROJECTS: 
                 return [
-                    new StarrySkybox(scene),                    
+                    new StarrySkybox(scene, camera),                    
                 ]                
             default:
                 return [];

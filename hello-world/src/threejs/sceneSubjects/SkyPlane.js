@@ -104,6 +104,11 @@ export default function SkyPlane(scene) {
     innerCircle.rotation.y = -Math.PI/2
     // innerCircle.rotation.x = Math.PI/2
 
+  var innerCircle2 = new THREE.Mesh( innerGeometry, innerMaterial );
+  scene.add( innerCircle2 );
+  innerCircle2.position.set(0, 10, 50);
+  innerCircle.rotation.y = -Math.PI/2
+  // innerCircle.rotation.x = Math.PI/2    
 
     this.update = function(time) {
         outerPlane.material.uniforms.time.value = time%1000;
