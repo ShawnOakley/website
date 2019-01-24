@@ -10,6 +10,8 @@ import StarrySkybox from './sceneSubjects/StarrySkybox';
 import SkyPlane from './sceneSubjects/SkyPlane';
 import AnimatedLandscape from './sceneSubjects/AnimatedLandscape';
 
+const OrbitControls = require('three-orbitcontrols')
+
 export default function SceneManager(canvas, sceneName, eventBus) {
 
     const clock = new THREE.Clock();
@@ -23,7 +25,10 @@ export default function SceneManager(canvas, sceneName, eventBus) {
     const scene = buildScene();
     const renderer = buildRender(screenDimensions);
     const camera = buildCamera(screenDimensions, sceneName);
-    const controls = buildControls(camera, sceneName);
+    const controls = buildControls(camera, sceneName, renderer);
+    controls.update();  
+    // need to set the camera to get the positions to update successfully               
+    camera.position.set( 0, 20, 20 );          
     const sceneSubjects = createSceneSubjects(scene, sceneName);
 
     setTimeout(()=>{
@@ -57,10 +62,15 @@ export default function SceneManager(canvas, sceneName, eventBus) {
     function buildControls(camera, sceneName) {
         switch (sceneName) {                
             case SCENE_CONSTANTS.SCENE_PROJECTS: 
-                var orbitControls = new THREE.OrbitControls(camera)
-                orbitControls.autoRotate = true;
+
+
             default:
-                return null;
+                var orbitControls = new OrbitControls(camera, renderer.domElement)
+                // orbitControls.autoRotate = true;
+                orbitControls.enableDamping = true
+                orbitControls.dampingFactor = 0.25
+                orbitControls.enableZoom = false
+                return orbitControls;
         }        
     }
 
@@ -70,9 +80,9 @@ export default function SceneManager(canvas, sceneName, eventBus) {
                 const aspectRatio = width / height;
                 const fieldOfView = 60;
                 const nearPlane = 1;
-                const farPlane = 300; 
+                const farPlane = 700; 
                 const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
-                camera.target = new THREE.Vector3( 0, 0, 0 );
+                camera.target = new THREE.Vector3( 0, 0, 0 ); 
                 return camera;
         }
     }
@@ -94,17 +104,19 @@ export default function SceneManager(canvas, sceneName, eventBus) {
         }
     }
 
-    this.update = function() {
+    this.update = () => {
+        // requestAnimationFrame( this.update );
         const elapsedTime = clock.getElapsedTime();
 
         for(let i=0; i<sceneSubjects.length; i++)
         	sceneSubjects[i].update(elapsedTime);
 
-        renderer.render(scene, camera);
         if (controls) {
-            var delta = clock.getDelta();
-            controls.update(delta);
+            // var delta = clock.getDelta();
+            controls.update();
         }
+        renderer.render(scene, camera);
+
     }
 
     this.onWindowResize = function() {

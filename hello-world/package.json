@@ -23,7 +23,8 @@
     "react-icons-kit": "^1.2.1",
     "react-tooltip": "^3.9.2",
     "react-transition-group": "^2.5.3",
-    "three": "^0.100.0"
+    "three": "^0.100.0",
+    "three-orbitcontrols": "^2.99.1"
   },
   "repository": {
     "type": "git",

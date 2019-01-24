@@ -67,15 +67,21 @@ export default function SkyPlane(scene) {
         `,
           wireframe: false
       });
-    var outerPlane = new THREE.Mesh( planeGeometry, planeMaterial );
+    // var outerPlane = new THREE.Mesh( planeGeometry, planeMaterial );
+    planeMaterial.side = THREE.BackSide
+    var outerPlaneGeo = new THREE.SphereGeometry( 250, 250, 250 );
+    var outerPlane = new THREE.Mesh( outerPlaneGeo, planeMaterial );
+
     scene.add( outerPlane );
-    outerPlane.position.set(0, 0, -205);
+    outerPlane.position.set(0, 0, -180);
+    // outerPlane.position.set(0, 0, 0);
+
     
     var outerGeometry = new THREE.CircleGeometry( 75, 75, 100 );
     var outerMaterial = new THREE.MeshPhongMaterial( {color: 0xffff00, emissive: 0xffff00} );
     var outerCircle = new THREE.Mesh( outerGeometry, outerMaterial );
     scene.add( outerCircle );
-	outerCircle.position.set(0, 0, -200);
+  	outerCircle.position.set(0, 0, -200);
 
     var uniforms = {
         color: new THREE.Uniform(new THREE.Vector3(1,0,0.023529411764705882)),
