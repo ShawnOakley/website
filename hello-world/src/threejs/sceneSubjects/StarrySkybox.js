@@ -23,7 +23,7 @@ export default function StarrySkybox(scene, camera) {
     var outerCircle = new THREE.Mesh( outerGeometry, outerMaterial );
     scene.add( outerCircle );
   	outerCircle.position.set(20, 30, 10);    
-    // //skybox
+    // // //skybox
     // var picResources  = [frontPic, backPic, topPic, bottomPic, leftPic, rightPic];
     var picResources = [pic, pic, pic, pic, pic, pic]
     scene.background = new THREE.CubeTextureLoader().load(picResources);    
