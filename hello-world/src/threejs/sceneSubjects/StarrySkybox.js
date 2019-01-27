@@ -1,5 +1,8 @@
 import * as THREE from 'three';
-import pic from './../images/auroraCube.jpg';
+// import pic from './../images/auroraCube.jpg';
+import baseColorTexture from './../images/textures/marble/baseColor.jpg';
+// import normalMap from './../images/textures/marble/normal.jpg';
+// https://drive.google.com/drive/folders/1OYUTfH8my77-XwuB7udviv0DV1GFmpRE
 
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
@@ -14,31 +17,40 @@ function onMouseMove( event ) {
 
 }
 
-
-
-export default function StarrySkybox(scene, camera) {
-    var outerGeometry = new THREE.CircleGeometry( 5 );
-    var outerMaterial = new THREE.MeshPhongMaterial( {color: 0xcc66ff, emissive: 0xcc66ff} );
+function addCollection(collectionArray, scene) {
+    var outerGeometry = new THREE.SphereGeometry( 10, 32, 32 );
+    var outerMaterial = new THREE.MeshPhongMaterial( {
+        color: 0xcc66ff, 
+        // map: THREE.ImageUtils.loadTexture(baseColorTexture),
+        // normalMap
+    } );
     outerMaterial.side = THREE.DoubleSide
     var outerCircle = new THREE.Mesh( outerGeometry, outerMaterial );
     scene.add( outerCircle );
-  	outerCircle.position.set(20, 30, 10);    
+    outerCircle.position.set(0, 10, -198);
+}
+
+
+export default function StarrySkybox(scene, camera) {
+  	// outerCircle.position.set(20, 30, 10);    
     // // //skybox
     // var picResources  = [frontPic, backPic, topPic, bottomPic, leftPic, rightPic];
-    var picResources = [pic, pic, pic, pic, pic, pic]
+    addCollection([], scene);
+    var picResources = [baseColorTexture, baseColorTexture, baseColorTexture, baseColorTexture, baseColorTexture, baseColorTexture]
     scene.background = new THREE.CubeTextureLoader().load(picResources);    
+    // scene.background.normalMap = normalMap;
     this.update = function(time) {
 	    // update the picking ray with the camera and mouse position
     	raycaster.setFromCamera( mouse, camera );
 
 	    // calculate objects intersecting the picking ray
         var intersects = raycaster.intersectObjects( scene.children );
-        console.log('intersects', intersects);
+        // console.log('intersects', intersects);
         if (intersects.length !== 8) {
             for ( var i = 0; i < intersects.length; i++ ) {
             
-                intersects[ i ].object.material.color.set( 0xff0000 );
-                intersects[ i ].object.material.emissive.set( 0xff0000 );
+                // intersects[ i ].object.material.color.set( 0xff0000 );
+                // intersects[ i ].object.material.emissive.set( 0xff0000 );
         
             }
         }

@@ -4,7 +4,7 @@ import * as THREE from 'three';
 
 import SCENE_CONSTANTS from './../constants/scenes';
 
-// import GeneralLights from './sceneSubjects/GeneralLights';
+import GeneralLights from './sceneSubjects/GeneralLights';
 // import TestSubject from './sceneSubjects/TestSubject';
 import StarrySkybox from './sceneSubjects/StarrySkybox';
 import SkyPlane from './sceneSubjects/SkyPlane';
@@ -97,7 +97,8 @@ export default function SceneManager(canvas, sceneName, eventBus) {
                 ];
             case SCENE_CONSTANTS.SCENE_PROJECTS: 
                 return [
-                    new StarrySkybox(scene, camera),                    
+                    new StarrySkybox(scene, camera),
+                    new GeneralLights(scene, camera)                    
                 ]                
             default:
                 return [];
