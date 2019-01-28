@@ -6,7 +6,8 @@ import SCENE_CONSTANTS from './../constants/scenes';
 
 import GeneralLights from './sceneSubjects/GeneralLights';
 // import TestSubject from './sceneSubjects/TestSubject';
-import StarrySkybox from './sceneSubjects/StarrySkybox';
+// import StarrySkybox from './sceneSubjects/StarrySkybox';
+import ProjectsDisplayRoom from './sceneSubjects/ProjectsDisplayRoom';
 import SkyPlane from './sceneSubjects/SkyPlane';
 import AnimatedLandscape from './sceneSubjects/AnimatedLandscape';
 
@@ -78,9 +79,9 @@ export default function SceneManager(canvas, sceneName, eventBus) {
         switch (sceneName) {                
             default:
                 const aspectRatio = width / height;
-                const fieldOfView = 60;
+                const fieldOfView = 80;
                 const nearPlane = 1;
-                const farPlane = 700; 
+                const farPlane = 1000; 
                 const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
                 camera.target = new THREE.Vector3( 0, 0, 0 ); 
                 return camera;
@@ -97,7 +98,7 @@ export default function SceneManager(canvas, sceneName, eventBus) {
                 ];
             case SCENE_CONSTANTS.SCENE_PROJECTS: 
                 return [
-                    new StarrySkybox(scene, camera),
+                    new ProjectsDisplayRoom(scene, camera),
                     new GeneralLights(scene, camera)                    
                 ]                
             default:
