@@ -1,5 +1,12 @@
 import * as THREE from 'three';
 import baseColorTexture from './../images/textures/marble/baseColor.jpg';
+import starBackground from './../images/background/star.jpg';
+
+// https://shaderfrog.com/app/view/2293
+// https://shaderfrog.com/app/view/164
+// https://shaderfrog.com/app/view/74
+
+// http://glslsandbox.com/e#52248.0
 
 export default function ProjectsDisplayRoom(scene) {
 
@@ -61,7 +68,7 @@ export default function ProjectsDisplayRoom(scene) {
 
     var floorPlaneGeo = new THREE.PlaneGeometry( 800, 800, 2 );
     var texture = new THREE.TextureLoader().load( baseColorTexture );
-    var floorMaterial = new THREE.MeshBasicMaterial({color: 0xcc66ff,map: texture})        
+    var floorMaterial = new THREE.MeshBasicMaterial({map: texture})        
 
     floorMaterial.side = THREE.BackSide
       var floorPlane = new THREE.Mesh( 
@@ -73,15 +80,18 @@ export default function ProjectsDisplayRoom(scene) {
     floorPlane.position.set(0, -200, 0);
     floorPlane.rotation.x = Math.PI / 2;
     
-    planeMaterial.side = THREE.BackSide
+    // planeMaterial.side = THREE.BackSide
     var outerPlaneGeo = new THREE.SphereGeometry( 500, 100 );
-    var outerPlane = new THREE.Mesh( outerPlaneGeo, planeMaterial );
+    var outerPlaneTexture = new THREE.TextureLoader().load( starBackground );
+    var outerPlaneMaterial = new THREE.MeshBasicMaterial({map: outerPlaneTexture})        
+    outerPlaneMaterial.side = THREE.BackSide
+    var outerPlane = new THREE.Mesh( outerPlaneGeo, outerPlaneMaterial );
     scene.add( outerPlane );
     outerPlane.position.set(0, 0, 0);
 
 
     this.update = function(time) {
-        outerPlane.material.uniforms.time.value = time%1000;
+        // outerPlane.material.uniforms.time.value = time%1000;
         // plane.material.emissive.setHex( 0xFFFFFF )
     }    
 }

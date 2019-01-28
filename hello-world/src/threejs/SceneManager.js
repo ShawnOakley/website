@@ -99,7 +99,6 @@ export default function SceneManager(canvas, sceneName, eventBus) {
             case SCENE_CONSTANTS.SCENE_PROJECTS: 
                 return [
                     new ProjectsDisplayRoom(scene, camera),
-                    new GeneralLights(scene, camera)                    
                 ]                
             default:
                 return [];
