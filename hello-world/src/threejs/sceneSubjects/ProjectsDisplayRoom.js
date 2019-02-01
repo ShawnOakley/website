@@ -103,7 +103,7 @@ export default function ProjectsDisplayRoom({scene, camera, sceneObjects}) {
         // var ray = new THREE.Ray( camera.position, 
         //                          vector.normalize() );
 
-        //                          console.log("++++", itemSphereGeo)
+        //       //                   console.log("++++", itemSphereGeo)
 
         // var intersects = ray.intersectSphere( itemSphereGeo.boundingSphere, vector );
         // var intersects = ray.intersectObject( itemSphereGeo.boundingSphere, vector );
