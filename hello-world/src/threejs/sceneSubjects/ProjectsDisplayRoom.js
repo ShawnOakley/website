@@ -15,7 +15,7 @@ function onMouseMove( event ) {
 // https://shaderfrog.com/app/view/2293
 // https://shaderfrog.com/app/view/164
 // https://shaderfrog.com/app/view/74
-
+//
 // http://glslsandbox.com/e#52248.0
 
 export default function ProjectsDisplayRoom({scene, camera, sceneObjects}) {
