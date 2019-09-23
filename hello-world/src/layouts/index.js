@@ -2,6 +2,8 @@ import React from "react"
 import Transition from "./../components/transition";
 import { Global, css } from "@emotion/core"
 import styled from "@emotion/styled"
+import {Helmet} from "react-helmet";
+
 
 const Wrapper = styled("div")`
   width:100%;
@@ -19,6 +21,11 @@ const Wrapper = styled("div")`
 
 export default ({ children, location }) => (
   <Wrapper>
+    <Helmet>
+        <meta charSet="utf-8" />
+        <title>Shawn Oakley</title>
+        <script src="script/leon.js"></script>
+    </Helmet>    
     <Global
       styles={css`
         html {
