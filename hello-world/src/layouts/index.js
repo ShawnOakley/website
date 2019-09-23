@@ -24,7 +24,9 @@ export default ({ children, location }) => (
     <Helmet>
         <meta charSet="utf-8" />
         <title>Shawn Oakley</title>
+        <script src="script/pixi.js"></script>
         <script src="script/leon.js"></script>
+        <script src="script/utils.js"></script>
     </Helmet>    
     <Global
       styles={css`
