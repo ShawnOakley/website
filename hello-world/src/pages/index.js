@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import EventEmitter from "EventEmitter";
 import EventManager from "../components/eventManager";
 import Header from './../components/header';
+import TextSplash from './../components/textSplash';
 import ThreeContainer from './../components/threeContainer';
 import SCENE_CONSTANTS from './../constants/scenes';
 
@@ -13,7 +14,8 @@ let EventBus = new EventEmitter();
 // Intro point for gatsby app
 export default () => (
     <EventManager eventBus={EventBus}>
-      <Header />
-      <ThreeContainer sceneName={SCENE_CONSTANTS.SCENE_INTRO} eventBus={EventBus}/>
+      <TextSplash />
+      {/* <Header />
+      <ThreeContainer sceneName={SCENE_CONSTANTS.SCENE_INTRO} eventBus={EventBus}/> */}
     </EventManager>
   )

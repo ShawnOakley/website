@@ -77,6 +77,7 @@ export default class Header extends React.Component {
                     cursor: 'pointer',
                     color: 'black'                
                 }}          
+                target="_blank" 
                 onMouseEnter={()=>this.turnOnHoverState('linkedin')}          
                 onMouseLeave={()=>this.turnOffHoverState('linkedin')} 
                 data-tip='LinkedIn Profile'
@@ -91,6 +92,7 @@ export default class Header extends React.Component {
                     cursor: 'pointer',
                     color: 'black'                
                 }}          
+                target="_blank" 
                 onMouseEnter={()=>this.turnOnHoverState('blog')}   
                 onMouseLeave={()=>this.turnOffHoverState('blog')} 
                 data-tip='Personal Blog/Writing'  
@@ -118,6 +120,7 @@ export default class Header extends React.Component {
                     cursor: 'pointer',
                     color: 'black'                
                 }}          
+                target="_blank" 
                 onMouseEnter={()=>this.turnOnHoverState('stackoverflow')} 
                 onMouseLeave={()=>this.turnOffHoverState('stackoverflow')}
                 data-tip='Stack Overflow Profile' 
@@ -131,7 +134,8 @@ export default class Header extends React.Component {
                     marginRight: '4px',
                     cursor: 'pointer',
                     color: 'black'                
-                }}          
+                }}        
+                target="_blank"   
                 onMouseEnter={()=>this.turnOnHoverState('instagram')} 
                 onMouseLeave={()=>this.turnOffHoverState('instagram')}  
                 data-tip='Instagram Account'

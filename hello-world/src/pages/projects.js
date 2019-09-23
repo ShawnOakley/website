@@ -1,4 +1,5 @@
 import React from "react"
+import Header from './../components/header';
 import EventEmitter from "EventEmitter";
 import EventManager from "../components/eventManager";
 import ThreeContainer from './../components/threeContainer';
@@ -8,6 +9,7 @@ let EventBus = new EventEmitter();
 
 export default () => (
     <EventManager eventBus={EventBus}>
+      <Header />
       <ThreeContainer sceneName={SCENE_CONSTANTS.SCENE_PROJECTS} eventBus={EventBus} />
     </EventManager>
 )
