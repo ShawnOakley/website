@@ -37,7 +37,7 @@ export default function TextSplash() {
   
   function init() {
     generatePixi(0x000000, PIXI);
-    texture = PIXI.Texture.from('data/drop-alpha.png');
+    texture = PIXI.Texture.from('img/drop-alpha.png');
     particleCon = new PIXI.ParticleContainer(particleTotal, {
         vertices: false,
         scale: true,

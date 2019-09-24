@@ -13,6 +13,17 @@ import {mail2} from 'react-icons-kit/icomoon/mail2'
 // To Do:
 // Add github link
 
+// Change to lottie player for links
+// https://lottiefiles.com/6637-github-logo
+
+// Linkedin
+// https://lottiefiles.com/6879-linkedin-social-media-icon
+
+// Projects
+// https://lottiefiles.com/8279-maintain
+
+// Have splash text move to circle on upper right and then have name come in
+
 export default class Header extends React.Component {
     constructor(props) {
         super(props); 
