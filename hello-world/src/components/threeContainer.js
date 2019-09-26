@@ -9,7 +9,7 @@ export default class ThreeContainer extends Component {
   }
   render () {
       return (
-        <div className={'three-container'} ref={element => this.threeRootElement = element} />
+        <div style={{zIndex:10}} className={'three-container'} ref={element => this.threeRootElement = element} />
       );
   }
 }

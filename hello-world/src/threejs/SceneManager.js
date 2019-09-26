@@ -83,7 +83,7 @@ export default function SceneManager(canvas, sceneName, eventBus) {
                 const nearPlane = 1;
                 const farPlane = 1000; 
                 const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
-                camera.target = new THREE.Vector3( 0, 0, 0 ); 
+                camera.target = new THREE.Vector3( 0, 180, 0 ); 
                 return camera;
         }
     }

@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "gatsby";
+import React, { useState } from "react";
+// import { Link } from "gatsby";
 import EventEmitter from "EventEmitter";
 import EventManager from "../components/eventManager";
-import Header from './../components/header';
+// import Header from './../components/header';
 import TextSplash from './../components/textSplash';
 import ThreeContainer from './../components/threeContainer';
 import SCENE_CONSTANTS from './../constants/scenes';
@@ -12,10 +12,17 @@ import SCENE_CONSTANTS from './../constants/scenes';
 let EventBus = new EventEmitter();
 
 // Intro point for gatsby app
-export default () => (
+export default () => {
+  const [displayScene, setDisplayScene] = useState(false);
+
+  return (
     <EventManager eventBus={EventBus}>
-      <TextSplash />
-      {/* <Header />
-      <ThreeContainer sceneName={SCENE_CONSTANTS.SCENE_INTRO} eventBus={EventBus}/> */}
+      <TextSplash onComplete={setDisplayScene} />
+      {/* <Header /> */}
+      {displayScene && (<div>
+        <ThreeContainer sceneName={SCENE_CONSTANTS.SCENE_INTRO} eventBus={EventBus}/>
+      </div>)}
     </EventManager>
   )
+
+}
