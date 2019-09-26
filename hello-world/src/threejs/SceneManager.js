@@ -29,11 +29,14 @@ export default function SceneManager(canvas, sceneName, eventBus) {
     const controls = buildControls(camera, sceneName, renderer);
     controls.update();  
     // need to set the camera to get the positions to update successfully               
-    camera.position.set( 0, 20, 20 );          
+    // https://stackoverflow.com/questions/10325095/threejs-camera-lookat-has-no-effect-is-there-something-im-doing-wrong        
+    controls.object.position.set(0, 0, 45);
+    controls.target = new THREE.Vector3( 0,0,0);     
     const sceneSubjects = createSceneSubjects(scene, sceneName, camera);
 
     setTimeout(()=>{
-        eventBus.emit('test')
+        eventBus.emit('test')  
+
     }, 1000)
 
     function buildScene() {
@@ -83,7 +86,6 @@ export default function SceneManager(canvas, sceneName, eventBus) {
                 const nearPlane = 1;
                 const farPlane = 1000; 
                 const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
-                camera.target = new THREE.Vector3( 0, 0, 0 ); 
                 return camera;
         }
     }

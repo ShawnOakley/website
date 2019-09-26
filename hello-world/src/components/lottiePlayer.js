@@ -19,7 +19,6 @@ const Loader = (props) => {
     anim.setSpeed(props.speed || 1);
 
     anim.goToAndPlay(props.startIndex ? props.startIndex : 0);
-    console.log("anim", props)
     return function cleanup() {
       anim.destroy();
     };

@@ -15,15 +15,24 @@ export default function TextSplash(props) {
       var timeline = new TimelineLite()  
       timeline.staggerFromTo(leon.drawing, 0.8, {value: 0}, {value:1, stagger:0.2, ease: Power4.easeOut})
               .staggerTo(leon.drawing, 0.8, {value: 0, ease:  Power4.easeOut}, 0.2)
-      
-      timeline.to(background,  2, { 
-        opacity: 0.2, 
-        width: '12%', 
-        padding: '10%', 
+
+      timeline.to(background,  1.6, { 
         top:'80px', 
-        left: '80px' 
+        left: '80px',
+        borderRadius: '50%', 
+        width: '12%', 
+        padding: '10%',         
+        ease: Power4.easeOut 
+      }).add(()=>props.onComplete(true))              
+
+      timeline.to(background,  1.8, { 
+        opacity: 0.2, 
+        ease: Power4.easeOut
       }).add(()=>props.onComplete(true))
-      timeline.to(background,  3.2, { borderRadius: '50%', zIndex: 101 }, 4)
+      timeline.to(background,  1.9, { 
+        zIndex: 101,
+        ease: Power4.easeOut 
+      }, 4)
 
     }, 100)
   });
