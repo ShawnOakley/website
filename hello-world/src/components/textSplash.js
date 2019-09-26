@@ -13,10 +13,8 @@ export default function TextSplash(props) {
       init();
       let background  = document.querySelector('#background');
       var timeline = new TimelineLite()  
-      timeline.staggerFromTo(leon.drawing, 0.8, {value: 0}, {value:1, stagger:0.2, ease: Power4.easeOut})
-              .staggerTo(leon.drawing, 0.8, {value: 0, ease:  Power4.easeOut}, 0.2)
 
-      timeline.to(background,  1.6, { 
+      timeline.to(background,  0.8, { 
         top:'80px', 
         left: '80px',
         borderRadius: '25%', 
@@ -26,7 +24,7 @@ export default function TextSplash(props) {
         ease: Power4.easeOut 
       }).add(()=>props.onComplete(true))              
 
-      timeline.to(background,  1.8, { 
+      timeline.to(background,  1.2, { 
         opacity: 0.2, 
         ease: Power4.easeOut
       }).add(()=>{
@@ -35,10 +33,13 @@ export default function TextSplash(props) {
         textContainer.innerHTML = '{content}';
 
       })
-      timeline.to(background,  1.9, { 
+      timeline.to(background,  12, { 
         zIndex: 101,
         ease: Power4.easeOut 
       }, 4)
+
+      timeline.staggerFromTo(leon.drawing, 1.2, {value: 0}, {value:1, stagger:0.2, ease: Power4.easeOut})
+              .staggerTo(leon.drawing, 1,8, {value: 0, ease:  Power4.easeOut}, 0.2)
 
     }, 100)
   });
@@ -50,9 +51,9 @@ export default function TextSplash(props) {
   const pixelRatio = 2;
   
   const init = () => {
-      let textContainer  = document.querySelector('#text-container');
+      let textContainer  = document.querySelector('#background');
       canvas = document.createElement('canvas');
-      canvas.style.zIndex = "1000";
+      canvas.style.zIndex = '1500'
       textContainer.appendChild(canvas);
       ctx = canvas.getContext("2d");
   
@@ -86,8 +87,6 @@ export default function TextSplash(props) {
 
   return (
     <div  id={'text-container'}>
-
-
       <div  
         id={'background'}
         style={{
@@ -98,7 +97,7 @@ export default function TextSplash(props) {
           width: '100%',
           display:'block',
           padding: '100%',
-          zIndex:'-1',
+          zIndex:'800',
           fontFamily: "Josefin Sans, sans-serif",
         }}
     >{" "}</div>

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 // import { Link } from "gatsby";
 import EventEmitter from "EventEmitter";
 import EventManager from "../components/eventManager";
-// import Header from './../components/header';
 import TextSplash from './../components/textSplash';
 import ThreeContainer from './../components/threeContainer';
 import SCENE_CONSTANTS from './../constants/scenes';
@@ -20,8 +19,7 @@ export default () => {
   return (
     <EventManager eventBus={EventBus}>
       <TextSplash onComplete={setDisplayScene} />
-      {/* <Header /> */}
-      <LottieCarousel  />
+      {displayScene && <div><LottieCarousel  /></div>}
       {displayScene && (
         <div>
           <ThreeContainer sceneName={SCENE_CONSTANTS.SCENE_INTRO} eventBus={EventBus}/>

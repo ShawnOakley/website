@@ -27,6 +27,7 @@ export default ({ children, location }) => (
         <script src="script/pixi.js"></script>
         <script src="script/leon.js"></script>
         <script src="script/utils.js"></script>
+        <style>{'body { background-color: black; }'}</style>        
     </Helmet>    
     <Global
       styles={css`
