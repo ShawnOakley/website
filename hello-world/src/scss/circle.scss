@@ -5,6 +5,15 @@
 /// @param {Length} $circle-size - Large circle size
 /// @param {Length} $item-size - Single item size
 // https://css-tricks.com/snippets/sass/placing-items-circle/
+
+@-webkit-keyframes animation {
+    0%     {background-color:red;}
+    50.0%  {background-color: skyblue;} /* your chosen 'mid' color */
+    75.0%  {background-color: greenyellow}
+    85.0%  {background-color:orange}
+    100%  {background-color:red}
+}
+
 @mixin on-circle($item-count, $circle-size, $item-size) {
     position: relative;
     width:  $circle-size;
@@ -33,11 +42,27 @@
             rotate($rot * -1deg)
             translateZ(200px);
         }
+        &:hover {
+          -webkit-animation-name: animation;
+          -webkit-animation-duration: 30s;
+          -webkit-animation-timing-function: ease-in-out;
+          -webkit-animation-iteration-count: infinite;    
+          -webkit-animation-play-state: running;
+          
+          animation-name: animation;
+          animation-duration: 30s;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: infinite;    
+          animation-play-state: running;
+          background-color: #f00;
+        }        
   
         $rot: $rot + $angle;
       }
     }
   }
+
+
 
   .circle-container {
     @include on-circle($item-count: 4, $circle-size: 20em, $item-size: 6em); 
@@ -54,9 +79,5 @@
       // filter: grayscale(100%);
       transition: .15s;
       cursor: pointer;
-      &:hover {
-        background-color:grey;
-      }
-   
     }
   }
