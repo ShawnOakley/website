@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, useState} from 'react';
 import {
     // TweenMax, 
     Power4, TimelineLite} from 'gsap';
@@ -7,6 +7,9 @@ export default function TextSplash(props) {
   // Declare a new state variable, which we'll call "count"
   // const [count, setCount] = useState(0);
   // eslint-disable-next-line
+  const [completed, setComplete] = useState(false);
+
+
   useEffect(() => {
     // Update the document title using the browser API
     var timeline = new TimelineLite()  
@@ -22,7 +25,10 @@ export default function TextSplash(props) {
         height: '100px', 
         padding: '1px',         
         ease: Power4.easeOut 
-      }).add(()=>props.onComplete(true))              
+      }).add(()=>{
+        setComplete(true)
+        props.onComplete(true)
+      })              
 
       timeline.to(background,  1.2, { 
         opacity: 0.2, 
