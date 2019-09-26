@@ -9,10 +9,10 @@ export default function TextSplash(props) {
   // eslint-disable-next-line
   useEffect(() => {
     // Update the document title using the browser API
+    var timeline = new TimelineLite()  
     setTimeout(()=>{
       init();
       let background  = document.querySelector('#background');
-      var timeline = new TimelineLite()  
 
       timeline.to(background,  0.8, { 
         top:'80px', 
@@ -30,18 +30,18 @@ export default function TextSplash(props) {
       }).add(()=>{
         props.onComplete(true)
         let textContainer = document.querySelector('#background');
-        textContainer.innerHTML = '{content}';
+        textContainer.innerHTML = 'S.   O.';
 
       })
-      timeline.to(background,  12, { 
-        zIndex: 101,
-        ease: Power4.easeOut 
-      }, 4)
-
-      timeline.staggerFromTo(leon.drawing, 1.2, {value: 0}, {value:1, stagger:0.2, ease: Power4.easeOut})
-              .staggerTo(leon.drawing, 1,8, {value: 0, ease:  Power4.easeOut}, 0.2)
+      // timeline.to(background,  1.4, { 
+      //   zIndex: 101,
+      //   ease: Power4.easeOut 
+      // }, 4)
+      timeline.staggerFromTo(leon.drawing, 1, {value: 0}, {value:1, stagger:0.2, ease: Power4.easeOut, color: 'white'})
+      .staggerTo(leon.drawing, 1, {value: 0, ease:  Power4.easeOut}, 0.2)
 
     }, 100)
+
   });
 
   let leon, canvas, ctx;
@@ -51,9 +51,10 @@ export default function TextSplash(props) {
   const pixelRatio = 2;
   
   const init = () => {
-      let textContainer  = document.querySelector('#background');
+      let textContainer  = document.querySelector('#text-container');
       canvas = document.createElement('canvas');
       canvas.style.zIndex = '1500'
+      canvas.style.position = 'absolute'
       textContainer.appendChild(canvas);
       ctx = canvas.getContext("2d");
   
