@@ -19,16 +19,22 @@ export default function TextSplash(props) {
       timeline.to(background,  1.6, { 
         top:'80px', 
         left: '80px',
-        borderRadius: '50%', 
-        width: '12%', 
-        padding: '10%',         
+        borderRadius: '25%', 
+        width: '200px',
+        height: '100px', 
+        padding: '1px',         
         ease: Power4.easeOut 
       }).add(()=>props.onComplete(true))              
 
       timeline.to(background,  1.8, { 
         opacity: 0.2, 
         ease: Power4.easeOut
-      }).add(()=>props.onComplete(true))
+      }).add(()=>{
+        props.onComplete(true)
+        let textContainer = document.querySelector('#background');
+        textContainer.innerHTML = '{content}';
+
+      })
       timeline.to(background,  1.9, { 
         zIndex: 101,
         ease: Power4.easeOut 
@@ -95,7 +101,7 @@ export default function TextSplash(props) {
           zIndex:'-1',
           fontFamily: "Josefin Sans, sans-serif",
         }}
-    ></div>
+    >{" "}</div>
       </div>
   );
 }
