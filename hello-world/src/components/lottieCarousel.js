@@ -8,13 +8,29 @@ const instagramAnim = require("./../lottie/instagram.json");
 const linkedinAnim = require("./../lottie/linkedin.json");
 const stackoverflowAnim = require("./../lottie/stackoverflow.json");
 
+const navigate = (linkType) => {
+    switch (linkType) {
+        case ("Instagram"):
+            window.open("https://www.instagram.com/the_real_planey_mcplaneface/?hl=en", "_blank", "");
+            break;
+        case ("Linkedin"):
+            window.open("https://www.linkedin.com/in/shawn-oakley", "_blank", "");
+            break;
+        case ("Github"):
+            window.open("https://github.com/ShawnOakley", "_blank", "");
+            break;
+        case ("Projects"):
+            break;            
+    }
+}
+
 const iconCollection = [
     {
         label: "Projects",
         resource: projectAnim
     },
     {
-        label: "Projects",
+        label: "Github",
         resource: githubAnim
     },
     {
@@ -38,7 +54,7 @@ const LottieCarousel = (props) => {
     return (
         <div className={'circle-container'}>
             {
-                iconCollection.map(({resource}, idx)=><div><LottiePlayer animationData={resource}/></div>)
+                iconCollection.map(({resource, label}, idx)=><div onClick={()=>navigate.apply(null, [label])}><LottiePlayer animationData={resource}/></div>)
             }
         </div>
 

@@ -26,17 +26,32 @@ export default function TextSplash(props) {
         padding: '1px',         
         ease: Power4.easeOut 
       }).add(()=>{
+        if (!completed) {
+          let textContainer = document.querySelector('#background');
+          let firstNameSpan =  document.createElement('span');
+          firstNameSpan.innerHTML = "Shawn";
+          firstNameSpan.style.position = 'absolute';
+          firstNameSpan.style.top = '20px';
+          firstNameSpan.style.left = '40px';
+          firstNameSpan.style.fontSize = '25px'
+          let lastNameSpan =  document.createElement('span');
+          lastNameSpan.innerHTML = "Oakley";
+          lastNameSpan.style.position = 'absolute';
+          lastNameSpan.style.bottom = '20px';
+          lastNameSpan.style.right = '40px';
+          lastNameSpan.style.fontSize = '25px'
+          textContainer.appendChild(firstNameSpan);
+          textContainer.appendChild(lastNameSpan);
+        }        
         setComplete(true)
         props.onComplete(true)
       })              
 
       timeline.to(background,  1.2, { 
-        opacity: 0.2, 
+        opacity: 0.6, 
         ease: Power4.easeOut
       }).add(()=>{
         props.onComplete(true)
-        let textContainer = document.querySelector('#background');
-        textContainer.innerHTML = 'S.   O.';
 
       })
       // timeline.to(background,  1.4, { 
@@ -72,7 +87,7 @@ export default function TextSplash(props) {
     // eslint-disable-next-line
       leon = new LeonSans({
           text: 'Welcome!',
-          color: ['#000000'],
+          color: ['#ffffff'],
           size: 80,
           weight: 200
       });
@@ -102,10 +117,16 @@ export default function TextSplash(props) {
           opacity: '1',
           color: 'white',
           width: '100%',
-          display:'block',
+          display:'flex',
+          alignItems: 'center',
+          justifyContent: 'space-around',
           padding: '100%',
           zIndex:'800',
           fontFamily: "Josefin Sans, sans-serif",
+          mozBoxShadow: "inset 0 0 10px #000000",
+          webkitBoxShadow: "inset 0 0 10px #000000",
+          boxShadow: "inset 0 0 10px #000000",
+          fontFamily: "Raleway, sans-serif"    
         }}
     >{" "}</div>
       </div>

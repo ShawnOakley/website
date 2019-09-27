@@ -27,7 +27,8 @@ export default ({ children, location }) => (
         <script src="script/pixi.js"></script>
         <script src="script/leon.js"></script>
         <script src="script/utils.js"></script>
-        <style>{'body { background-color: black; }'}</style>        
+        <style>{'body { background-color: black; }'}</style>  
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet"></link>      
     </Helmet>    
     <Global
       styles={css`
