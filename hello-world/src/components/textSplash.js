@@ -15,51 +15,59 @@ export default function TextSplash(props) {
     var timeline = new TimelineLite()  
     setTimeout(()=>{
       init();
-      let background  = document.querySelector('#background');
 
-      timeline.to(background,  0.8, { 
-        top:'80px', 
-        left: '80px',
-        borderRadius: '25%', 
-        width: '200px',
-        height: '100px', 
-        padding: '1px',         
-        ease: Power4.easeOut 
-      }).add(()=>{
-        if (!completed) {
-          let textContainer = document.querySelector('#background');
-          let firstNameSpan =  document.createElement('span');
-          firstNameSpan.innerHTML = "Shawn";
-          firstNameSpan.style.position = 'absolute';
-          firstNameSpan.style.top = '20px';
-          firstNameSpan.style.left = '40px';
-          firstNameSpan.style.fontSize = '25px'
-          let lastNameSpan =  document.createElement('span');
-          lastNameSpan.innerHTML = "Oakley";
-          lastNameSpan.style.position = 'absolute';
-          lastNameSpan.style.bottom = '20px';
-          lastNameSpan.style.right = '40px';
-          lastNameSpan.style.fontSize = '25px'
-          textContainer.appendChild(firstNameSpan);
-          textContainer.appendChild(lastNameSpan);
-        }        
-        setComplete(true)
-        props.onComplete(true)
-      })              
+      // let background  = document.querySelector('#background');
 
-      timeline.to(background,  1.2, { 
-        opacity: 0.6, 
-        ease: Power4.easeOut
-      }).add(()=>{
-        props.onComplete(true)
+      // timeline.to(background,  0.8, { 
+      //   top:'80px', 
+      //   left: '80px',
+      //   borderRadius: '25%', 
+      //   width: '200px',
+      //   height: '100px', 
+      //   padding: '1px',         
+      //   ease: Power4.easeOut 
+      // }).add(()=>{
+      //   if (!completed) {
+      //     let textContainer = document.querySelector('#background');
+      //     let firstNameSpan =  document.createElement('span');
+      //     firstNameSpan.innerHTML = "Shawn";
+      //     firstNameSpan.style.position = 'absolute';
+      //     firstNameSpan.style.top = '20px';
+      //     firstNameSpan.style.left = '40px';
+      //     firstNameSpan.style.fontSize = '25px'
+      //     let lastNameSpan =  document.createElement('span');
+      //     lastNameSpan.innerHTML = "Oakley";
+      //     lastNameSpan.style.position = 'absolute';
+      //     lastNameSpan.style.bottom = '20px';
+      //     lastNameSpan.style.right = '40px';
+      //     lastNameSpan.style.fontSize = '25px'
+      //     textContainer.appendChild(firstNameSpan);
+      //     textContainer.appendChild(lastNameSpan);
+      //   }        
+      //   setComplete(true)
+      //   props.onComplete(true)
+      // })              
 
-      })
+      // timeline.to(background,  1.2, { 
+      //   opacity: 0.6, 
+      //   ease: Power4.easeOut
+      // }).add(()=>{
+      //   props.onComplete(true)
+
+      // })
       // timeline.to(background,  1.4, { 
       //   zIndex: 101,
       //   ease: Power4.easeOut 
       // }, 4)
+      
       timeline.staggerFromTo(leon.drawing, 1, {value: 0}, {value:1, stagger:0.2, ease: Power4.easeOut, color: 'white'})
-      .staggerTo(leon.drawing, 1, {value: 0, ease:  Power4.easeOut}, 0.2)
+      .add(
+        ()=>{
+          setComplete(true)
+          props.onComplete(true)      
+        }
+      )
+      .staggerTo(leon.drawing, 1, {delay: 3, value: 0, ease:  Power4.easeOut}, 0.2)
 
     }, 100)
 
@@ -109,7 +117,7 @@ export default function TextSplash(props) {
 
   return (
     <div  id={'text-container'}>
-      <div  
+      {/* <div  
         id={'background'}
         style={{
           position: 'absolute',
@@ -128,7 +136,7 @@ export default function TextSplash(props) {
           boxShadow: "inset 0 0 10px #000000",
           fontFamily: "Raleway, sans-serif"    
         }}
-    >{" "}</div>
+    >{" "}</div> */}
       </div>
   );
 }
