@@ -12,7 +12,6 @@ export default function TextSplash(props) {
 
   useEffect(() => {
     // Update the document title using the browser API
-    var timeline = new TimelineLite()  
     setTimeout(()=>{
       init();
 
@@ -59,15 +58,7 @@ export default function TextSplash(props) {
       //   zIndex: 101,
       //   ease: Power4.easeOut 
       // }, 4)
-      
-      timeline.staggerFromTo(leon.drawing, 1, {value: 0}, {value:1, stagger:0.2, ease: Power4.easeOut, color: 'white'})
-      .add(
-        ()=>{
-          setComplete(true)
-          props.onComplete(true)      
-        }
-      )
-      .staggerTo(leon.drawing, 1, {delay: 3, value: 0, ease:  Power4.easeOut}, 0.2)
+    
 
     }, 350)
 
@@ -92,6 +83,9 @@ export default function TextSplash(props) {
       canvas.style.width = sw + 'px';
       canvas.style.height = sh + 'px';
       ctx.scale(pixelRatio, pixelRatio);
+
+      var timeline = new TimelineLite()  
+      
       setTimeout(()=>{
       // eslint-disable-next-line
         leon = new LeonSans({
@@ -100,6 +94,15 @@ export default function TextSplash(props) {
           size: 80,
           weight: 200
         });
+
+        timeline.staggerFromTo(leon.drawing, 1, {value: 0}, {value:1, stagger:0.2, ease: Power4.easeOut, color: 'white'})
+        .add(
+          ()=>{
+            setComplete(true)
+            props.onComplete(true)      
+          }
+        )
+        .staggerTo(leon.drawing, 1, {delay: 3, value: 0, ease:  Power4.easeOut}, 0.2)        
 
         requestAnimationFrame(animate);
       }, 250)
