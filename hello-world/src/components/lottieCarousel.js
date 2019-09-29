@@ -20,6 +20,7 @@ const navigate = (linkType) => {
             window.open("https://github.com/ShawnOakley", "_blank", "");
             break;
         case ("Projects"):
+            window.open("https://github.com/ShawnOakley", "_blank", "");
             break;            
     }
 }

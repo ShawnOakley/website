@@ -69,7 +69,7 @@ export default function TextSplash(props) {
       )
       .staggerTo(leon.drawing, 1, {delay: 3, value: 0, ease:  Power4.easeOut}, 0.2)
 
-    }, 100)
+    }, 350)
 
   });
 
@@ -92,17 +92,18 @@ export default function TextSplash(props) {
       canvas.style.width = sw + 'px';
       canvas.style.height = sh + 'px';
       ctx.scale(pixelRatio, pixelRatio);
-    // eslint-disable-next-line
-    setTimeout(()=>{
-      leon = new LeonSans({
-        text: 'Welcome!',
-        color: ['#ffffff'],
-        size: 80,
-        weight: 200
-      });
+      setTimeout(()=>{
+      // eslint-disable-next-line
 
-      requestAnimationFrame(animate);
-    }, 250)
+        leon = new LeonSans({
+          text: 'Welcome!',
+          color: ['#ffffff'],
+          size: 80,
+          weight: 200
+        });
+
+        requestAnimationFrame(animate);
+      }, 250)
 
   }
   
