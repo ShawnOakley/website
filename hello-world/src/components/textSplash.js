@@ -93,14 +93,17 @@ export default function TextSplash(props) {
       canvas.style.height = sh + 'px';
       ctx.scale(pixelRatio, pixelRatio);
     // eslint-disable-next-line
+    setTimeout(()=>{
       leon = new LeonSans({
-          text: 'Welcome!',
-          color: ['#ffffff'],
-          size: 80,
-          weight: 200
+        text: 'Welcome!',
+        color: ['#ffffff'],
+        size: 80,
+        weight: 200
       });
-  
+
       requestAnimationFrame(animate);
+    }, 250)
+
   }
   
   const animate = (t) => {
