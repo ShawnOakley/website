@@ -94,7 +94,6 @@ export default function TextSplash(props) {
       ctx.scale(pixelRatio, pixelRatio);
       setTimeout(()=>{
       // eslint-disable-next-line
-
         leon = new LeonSans({
           text: 'Welcome!',
           color: ['#ffffff'],
