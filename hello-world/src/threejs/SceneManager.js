@@ -1,5 +1,6 @@
 // https://medium.com/@soffritti.pierfrancesco/how-to-organize-the-structure-of-a-three-js-project-77649f58fa3f
 // https://github.com/PierfrancescoSoffritti/Doodling/blob/master/14.%20Three.js%20template/js/SceneManager.js
+
 import * as THREE from 'three';
 
 import SCENE_CONSTANTS from './../constants/scenes';
