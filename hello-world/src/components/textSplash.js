@@ -14,7 +14,7 @@ export default function TextSplash(props) {
     // Update the document title using the browser API
     setTimeout(()=>{
       init();
-
+      // TO DO -- Move these to transition splash component
       // let background  = document.querySelector('#background');
 
       // timeline.to(background,  0.8, { 
