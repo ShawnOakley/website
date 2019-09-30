@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
 import * as lottie from "lottie-web";
+import Tooltip from 'tooltip.js'
+import "./../scss/tooltip.scss"
 
 const Loader = (props) => {
   let loaderWrapper = null;
+  var tooltip = null
   const [player, setPlayer] = useState(null);
 
+
+  
   const onHover= ()=>{
+    // tooltip.show()
     player.play(props.startIndex ? props.startIndex : 0);
   }
 
   const onHoverLeave= ()=>{
+    // tooltip.hide()
     player.goToAndStop(0);
   }
+
 
   useEffect(() => {
     let animData = {
@@ -28,8 +36,14 @@ const Loader = (props) => {
     anim.stop();
     setPlayer(anim)
     // anim.goToAndPlay(props.startIndex ? props.startIndex : 0);
+    tooltip = new Tooltip(loaderWrapper, {
+      title: props.label,
+      trigger: "hover",
+    });
+  
     return  () => {
       player && player.destroy();
+      tooltip && tooltip.dispose();
     };
   }, [props.animationData]);
 
