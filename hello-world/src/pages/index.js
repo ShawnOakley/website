@@ -6,6 +6,7 @@ import TextSplash from './../components/textSplash';
 import ThreeContainer from './../components/threeContainer';
 import SCENE_CONSTANTS from './../constants/scenes';
 import LottieCarousel from './../components/lottieCarousel';
+import SEO from './../components/SEO';
 
 
 // https://divdev.io/animating-gatsby-pt/
@@ -18,6 +19,7 @@ export default () => {
 
   return (
     <EventManager eventBus={EventBus}>
+      <SEO />
       <TextSplash onComplete={setDisplayScene} />
       {displayScene && <div><LottieCarousel  /></div>}
       {displayScene && (
