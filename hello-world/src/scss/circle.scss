@@ -7,12 +7,30 @@
 // https://css-tricks.com/snippets/sass/placing-items-circle/
 
 @-webkit-keyframes animation {
-    0.0%  {background-color: skyblue;} /* your chosen 'mid' color */
-    20.0%  {background-color: plum}
-    40.0%  {background-color:orange}
-    60%  {background-color:pink}
-    80.0%  {background-color:plum}
-    100%  {background-color:skyblue}
+    0.0%  {
+      background-color: skyblue;
+      box-shadow: 0 6px darken(skyblue, 10%);
+    } /* your chosen 'mid' color */
+    20.0%  {
+      background-color: plum;
+      box-shadow: 0 6px  darken(plum, 10%);
+    }
+    40.0%  {
+      background-color:orange;
+      box-shadow: 0 6px darken(orange, 10%);
+    }
+    60%  {
+      background-color:pink;
+      box-shadow: 0 6px darken(pink, 10%);
+    }
+    80.0%  {
+      background-color:plum;
+      box-shadow: 0 6px darken(plum, 10%);  
+    }
+    100%  {
+      background-color:skyblue;
+      box-shadow: 0 6px darken(skyblue, 10%);  
+    }
 }
 
 @mixin on-circle($item-count, $circle-size, $item-size) {
