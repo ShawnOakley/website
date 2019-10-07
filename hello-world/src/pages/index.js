@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import EventEmitter from "EventEmitter";
 import EventManager from "../components/eventManager";
 import TextSplash from './../components/textSplash';
+import ScreenSplash from './../components/ScreenSplash';
 import ThreeContainer from './../components/threeContainer';
 import SCENE_CONSTANTS from './../constants/scenes';
 import LottieCarousel from './../components/lottieCarousel';
@@ -21,6 +22,7 @@ export default () => {
     <EventManager eventBus={EventBus}>
       <SEO />
       <TextSplash onComplete={setDisplayScene} />
+      <ScreenSplash></ScreenSplash>
       {displayScene && <div><LottieCarousel  /></div>}
       {displayScene && (
         <div>

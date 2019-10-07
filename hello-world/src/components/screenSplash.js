@@ -10,51 +10,16 @@ export default function ScreenSplash(props) {
   useEffect(() => {
     // Update the document title using the browser API
     setTimeout(()=>{
-      init();
-      // TO DO -- Move these to transition splash component
       let background  = document.querySelector('#background');
+       
+    timeline.to(background, 3, {
+        backgroundImage: "linear-gradient(red, yellow)",
 
-      timeline.to(background,  0.8, { 
-        top:'80px', 
-        left: '80px',
-        borderRadius: '25%', 
-        width: '200px',
-        height: '100px', 
-        padding: '1px',         
-        ease: Power4.easeOut 
-      }).add(()=>{
-        if (!completed) {
-          let textContainer = document.querySelector('#background');
-          let firstNameSpan =  document.createElement('span');
-          firstNameSpan.innerHTML = "Shawn";
-          firstNameSpan.style.position = 'absolute';
-          firstNameSpan.style.top = '20px';
-          firstNameSpan.style.left = '40px';
-          firstNameSpan.style.fontSize = '25px'
-          let lastNameSpan =  document.createElement('span');
-          lastNameSpan.innerHTML = "Oakley";
-          lastNameSpan.style.position = 'absolute';
-          lastNameSpan.style.bottom = '20px';
-          lastNameSpan.style.right = '40px';
-          lastNameSpan.style.fontSize = '25px'
-          textContainer.appendChild(firstNameSpan);
-          textContainer.appendChild(lastNameSpan);
-        }        
-        setComplete(true)
-        props.onComplete(true)
-      })              
-
-      timeline.to(background,  1.2, { 
-        opacity: 0.6, 
+    })
+      timeline.to(background,  2, { 
+        opacity: 0, 
         ease: Power4.easeOut
-      }).add(()=>{
-        props.onComplete(true)
-
       })
-      timeline.to(background,  1.4, { 
-        zIndex: 101,
-        ease: Power4.easeOut 
-      }, 4)
     
 
     }, 350)
@@ -67,7 +32,7 @@ export default function ScreenSplash(props) {
         id={'background'}
         style={{
           position: 'absolute',
-          backgroundColor: 'red',
+          backgroundImage: "linear-gradient(yellow, red)",
           opacity: '1',
           color: 'white',
           width: '100%',
