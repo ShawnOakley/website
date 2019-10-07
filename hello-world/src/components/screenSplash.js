@@ -18,6 +18,7 @@ export default function ScreenSplash(props) {
     })
       timeline.to(background,  2, { 
         opacity: 0, 
+        zIndex: -200,
         ease: Power4.easeOut
       })
     
