@@ -20,16 +20,15 @@ export default () => {
 
   return (
     <EventManager eventBus={EventBus}>
-      {/* <SEO />
+      <SEO />
       <TextSplash onComplete={setDisplayScene} />
-      <ScreenSplash></ScreenSplash> */}
-      <div><LottieCarousel  /></div>
-      {/* {displayScene && <div><LottieCarousel  /></div>}
+      <ScreenSplash></ScreenSplash>
+      {displayScene && <div><LottieCarousel  /></div>}
       {displayScene && (
         <div>
           <ThreeContainer sceneName={SCENE_CONSTANTS.SCENE_INTRO} eventBus={EventBus}/>
         </div>
-      )} */}
+      )}
     </EventManager>
   )
 
