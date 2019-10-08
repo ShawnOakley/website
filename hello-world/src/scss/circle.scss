@@ -37,7 +37,8 @@
     position: relative;
     width:  $circle-size;
     height: $circle-size;
-    padding: 0;
+    padding: ($circle-size/3);
+    // padding: 0;
     border-radius: 50%; 
     list-style: none;       
     
@@ -59,44 +60,96 @@
             rotate($rot * 1deg) 
             translate($circle-size / 2) 
             rotate($rot * -1deg)
-            translateZ(200px);
         }
-        &:hover {
-          -webkit-animation-name: animation;
-          -webkit-animation-duration: 30s;
-          -webkit-animation-timing-function: ease-in-out;
-          -webkit-animation-iteration-count: infinite;    
-          -webkit-animation-play-state: running;
-          
-          animation-name: animation;
-          animation-duration: 30s;
-          animation-timing-function: ease-in-out;
-          animation-iteration-count: infinite;    
-          animation-play-state: running;
-          background-color: #f00;
-        }        
+
+        // -webkit-animation-name: animation;
+        // -webkit-animation-duration: 30s;
+        // -webkit-animation-timing-function: ease-in-out;
+        // -webkit-animation-iteration-count: infinite;    
+        // -webkit-animation-play-state: running;
+        
+        // animation-name: animation;
+        // animation-duration: 30s;
+        // animation-delay: (0.5s*$i)
+        // animation-timing-function: ease-in-out;
+        // animation-iteration-count: infinite;    
+        // animation-play-state: running;
+        // background-color: #f00;
+       
   
         $rot: $rot + $angle;
       }
     }
   }
 
+  @mixin off-circle($item-count, $circle-size, $item-size) {
 
+    @for $i from 1 through $item-count {
+      &:nth-of-type(#{$i}) {
+        transform: 
+          translate(0px) 
+      }
+    }
+  }
 
   .circle-container {
+    background-color:red;
+    position: relative;
+    width:  6em;
+    height: 6em;
+    border-radius: 50%; 
+    list-style: none;         
+    transition: 0.5s;
+    transition-timing-function: ease-in;    
+
+    @include off-circle($item-count: 4, $circle-size: 20em, $item-size: 6em); 
+    div {
+      transition: 1s;
+      opacity: 0;
+    }
+
+  }
+
+  .loader-container {
+    display: inline-flex;
+    position:absolute;
+    top: 50%;
+    left:50%;
+    -webkit-animation-name: animation;
+    -webkit-animation-duration: 30s;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;    
+    -webkit-animation-play-state: running;
+    
+    animation-name: animation;
+    animation-duration: 10s;
+    animation-delay: (0.5 + random(5)/10)s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;    
+    animation-play-state: running;
+    background-color: #f00;
+  }
+
+  .circle-container:hover {
     @include on-circle($item-count: 4, $circle-size: 20em, $item-size: 6em); 
-    margin: 5em auto 0;
+    // margin: 5em auto 0;
     // border: solid 5px tomato;
-    position: absolute;
-    right: 100px;
-    top: 20px;      
+    // position: absolute;
+    // right: 100px;
+    // top: 20px;      
     z-index:100;
+    width:  20em;
+    height: 20em;
+    transition: 0.5s;
+    transition-timing-function: ease-in;    
     div { 
+      opacity: 1.0;
       display: block; 
       max-width: 100%; 
       border-radius: 100%;
+      transition-timing-function: ease-in;    
       // filter: grayscale(100%);
-      transition: .15s;
+      transition: 1s;
       cursor: pointer;
     }
   }
