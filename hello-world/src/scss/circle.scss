@@ -34,7 +34,6 @@
 }
 
 @mixin on-circle($item-count, $circle-size, $item-size) {
-    position: relative;
     width:  $circle-size;
     height: $circle-size;
     padding: ($circle-size/3);
@@ -61,50 +60,42 @@
             translate($circle-size / 2) 
             rotate($rot * -1deg)
         }
-
-        // -webkit-animation-name: animation;
-        // -webkit-animation-duration: 30s;
-        // -webkit-animation-timing-function: ease-in-out;
-        // -webkit-animation-iteration-count: infinite;    
-        // -webkit-animation-play-state: running;
-        
-        // animation-name: animation;
-        // animation-duration: 30s;
-        // animation-delay: (0.5s*$i)
-        // animation-timing-function: ease-in-out;
-        // animation-iteration-count: infinite;    
-        // animation-play-state: running;
-        // background-color: #f00;
-       
-  
         $rot: $rot + $angle;
       }
     }
   }
 
-  @mixin off-circle($item-count, $circle-size, $item-size) {
+  // @mixin off-circle($item-count, $circle-size, $item-size) {
 
-    @for $i from 1 through $item-count {
-      &:nth-of-type(#{$i}) {
-        transform: 
-          translate(0px) 
-      }
-    }
-  }
+  //   @for $i from 1 through $item-count {
+  //     &:nth-of-type(#{$i}) {
+  //       transform: 
+  //         translate(0px) 
+  //     }
+  //   }
+  // }
 
   .circle-container {
+    position:absolute;
+    right: 10%;
+    top:10%;
+    $size: 6em;
     background-color:red;
-    position: relative;
-    width:  6em;
-    height: 6em;
+    width:  $size;
+    height: $size;
+    margin: 2em; /*for centering purposes*/
     border-radius: 50%; 
     list-style: none;         
-    transition: 0.5s;
+    -webkit-transition: width 1s, height 1s, margin 1s;
+    -moz-transition: width 1s, height 1s, margin 1s;
+    -ms-transition: width 1s, height 1s, margin 1s;
+    transition: width 1s, height 1s, margin 1s;
     transition-timing-function: ease-in;    
-
-    @include off-circle($item-count: 4, $circle-size: 20em, $item-size: 6em); 
+    box-shadow: 0 ($size/13) darken(red, 10%);
+    transition: 1.0s;
+    // @include off-circle($item-count: 4, $circle-size: 20em, $item-size: 6em); 
     div {
-      transition: 1s;
+      transition: 0.5s;
       opacity: 0;
     }
 
@@ -120,10 +111,10 @@
     -webkit-animation-timing-function: ease-in-out;
     -webkit-animation-iteration-count: infinite;    
     -webkit-animation-play-state: running;
-    
+    $delay: (0.5 + random(5)/10)+'s';
     animation-name: animation;
     animation-duration: 10s;
-    animation-delay: (0.5 + random(5)/10)s;
+    animation-delay: $delay;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;    
     animation-play-state: running;
@@ -131,12 +122,7 @@
   }
 
   .circle-container:hover {
-    @include on-circle($item-count: 4, $circle-size: 20em, $item-size: 6em); 
-    // margin: 5em auto 0;
-    // border: solid 5px tomato;
-    // position: absolute;
-    // right: 100px;
-    // top: 20px;      
+    @include on-circle($item-count: 4, $circle-size: 20em, $item-size: 6em);     
     z-index:100;
     width:  20em;
     height: 20em;
@@ -148,7 +134,6 @@
       max-width: 100%; 
       border-radius: 100%;
       transition-timing-function: ease-in;    
-      // filter: grayscale(100%);
       transition: 1s;
       cursor: pointer;
     }
