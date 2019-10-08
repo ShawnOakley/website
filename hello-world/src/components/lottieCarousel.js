@@ -55,7 +55,7 @@ const LottieCarousel = (props) => {
     return (
         <div className={'circle-container'}>
             {
-                iconCollection.map(({resource, label}, idx)=><div onClick={()=>navigate.apply(null, [label])}><LottiePlayer label={label} animationData={resource}/></div>)
+                iconCollection.map(({resource, label}, idx)=><div className={'loader-container'} onClick={()=>navigate.apply(null, [label])}><LottiePlayer label={label} animationData={resource}/></div>)
             }
         </div>
 
