@@ -1,0 +1,175 @@
+/// Mixin to place items on a circle
+/// @author Hugo Giraudel
+/// @author Ana Tudor
+/// @param {Integer} $item-count - Number of items on the circle
+/// @param {Length} $circle-size - Large circle size
+/// @param {Length} $item-size - Single item size
+// https://css-tricks.com/snippets/sass/placing-items-circle/
+
+@-webkit-keyframes buttonColoring {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}  
+    // 0.0%  {
+    //   background-color: #e73c7e;
+    //   box-shadow: 0 6px  darken(#e73c7e, 10%);
+    // }
+    // 15.0%  {
+    //   background-color: #ee7752;
+    //   box-shadow: 0 6px darken(#ee7752, 10%);
+    // } /* your chosen 'mid' color */
+    // 30.0%  {
+    //   background-color:#23d5ab;
+    //   box-shadow: 0 6px darken(#23d5ab, 10%);
+    // }
+    // 50%  {
+    //   background-color:#23a6d5;
+    //   box-shadow: 0 6px darken(#23a6d5, 10%);      
+    // }
+    // 70.0%  {
+    //   background-color:#23d5ab;
+    //   box-shadow: 0 6px darken(#23d5ab, 10%);
+    // }  
+    // 85.0%  {
+    //   background-color:#ee7752;
+    //   box-shadow: 0 6px darken(#ee7752, 10%);        
+    // }      
+    // 100.0%  {
+    //   background-color: #e73c7e;
+    //   box-shadow: 0 6px  darken(#e73c7e, 10%); 
+    // }
+}
+
+// https://codepen.io/P1N2O/pen/pyBNzX
+@-webkit-keyframes circleColoring {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@mixin on-circle($item-count, $circle-size, $item-size) {
+    width:  $circle-size;
+    height: $circle-size;
+    padding: ($circle-size/3);
+    border-radius: 50%; 
+    list-style: none;       
+    
+    > * {
+      display: block;
+      position: absolute;
+      top:  50%; 
+      left: 50%;
+      width:  $item-size;
+      height: $item-size;
+      margin: -($item-size / 2);
+    
+      $angle: (360 / $item-count);
+      $rot: 0;
+  
+      @for $i from 1 through $item-count {
+        &:nth-of-type(#{$i}) {
+          transform: 
+            rotate($rot * 1deg) 
+            translate($circle-size / 2) 
+            rotate($rot * -1deg)
+        }
+        $rot: $rot + $angle;
+      }
+    }
+  }
+
+  .circle-container {
+    z-index:500;
+    position:absolute;
+    right: 5%;
+    top:5%;
+    $size: 6em;
+    width:  $size;
+    height: $size;
+    margin: 2em; /*for centering purposes*/
+    border-radius: 50%; 
+    list-style: none;         
+
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);    
+    background-size: 400% 400%;
+
+    -webkit-transition: width 1s, height 1s, margin 1s;
+    -moz-transition: width 1s, height 1s, margin 1s;
+    -ms-transition: width 1s, height 1s, margin 1s;
+    transition: width 1s, height 1s, margin 1s;
+    transition-timing-function: ease-in;    
+    // box-shadow: 0 ($size/13) darken(red, 10%);
+    transition: 1.0s;
+    // @include off-circle($item-count: 4, $circle-size: 20em, $item-size: 6em); 
+    // backgroundImage: "linear-gradient(red, yellow)",
+    -webkit-animation-name: circleColoring;
+    -webkit-animation-duration: 30s;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;    
+    -webkit-animation-play-state: running;
+    $delay: (0.5 + random(5)/10)+'s';
+    animation-name: circleColoring;
+    animation-duration: 10s;
+    animation-delay: $delay;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;    
+    animation-play-state: running;
+    div {
+      transition: 0.25s;
+      opacity: 0;
+    }
+
+  }
+
+  .loader-container {
+    display: inline-flex;
+    position:absolute;
+    top: 50%;
+    left:50%;
+    background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);    
+    background-size: 400% 400%;
+
+    -webkit-animation-name: buttonColoring;
+    -webkit-animation-duration: 30s;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;    
+    -webkit-animation-play-state: running;
+    $delay: (0.5 + random(5)/10)+'s';
+    animation-name: buttonColoring;
+    animation-duration: 10s;
+    animation-delay: $delay;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;    
+    animation-play-state: running;
+    background-color: #f00;
+  }
+
+  .circle-container:hover {
+    @include on-circle($item-count: 4, $circle-size: 10em, $item-size: 6em);     
+    z-index:100;
+    width:  10em;
+    height: 10em;
+    transition: 0.5s;
+    transition-timing-function: ease-in;    
+    div { 
+      opacity: 1.0;
+      display: block; 
+      max-width: 100%; 
+      border-radius: 100%;
+      transition-timing-function: ease-in;    
+      transition: 1s;
+      cursor: pointer;
+    }
+  }
