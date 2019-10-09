@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{263:function(n,i,t){"use strict";t.r(i);var c=t(2);t(0);i.default=function(){return Object(c.c)("div",null,"Writing")}}}]);
+//# sourceMappingURL=component---src-pages-writings-js-0136bd47cb30dcbe34e3.js.map
