@@ -23,6 +23,7 @@ export default ({ children, location }) => (
   <Wrapper>
     <Helmet>
         <meta charSet="utf-8" />
+        <meta name="theme-color" content="#f6bc0d"/>
         <title>Shawn Oakley</title>
         <script src="script/pixi.js"></script>
         <script src="script/leon.js"></script>
