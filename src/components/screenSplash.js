@@ -12,19 +12,20 @@ export default function ScreenSplash(props) {
     setTimeout(()=>{
       let background  = document.querySelector('#background');
        
-    timeline.to(background, 3, {
-        backgroundImage: "linear-gradient(red, yellow)",
-
-    })
-      timeline.to(background,  2, { 
-        opacity: 0, 
-        zIndex: -200,
-        ease: Power4.easeOut
-      })
-    
-
+      timeline
+        .to(background, 3, {
+            backgroundImage: "linear-gradient(red, yellow)",
+        })
+        .to(background,  2, { 
+          opacity: 0, 
+          zIndex: -200,
+          ease: Power4.easeOut,
+          height: "0%",
+        })
+        .to(background,  0.5, { 
+          padding: "0%"
+        })
     }, 350)
-
   });
 
   return (
