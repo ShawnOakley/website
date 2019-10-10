@@ -39,7 +39,6 @@ export default function AnimatedLandscape(scene) {
       fragmentShader,
       wireframe:false,
       fog:true,
-      side:  THREE.DoubleSide
     });
 
     var terrain = new THREE.Mesh(geometry, material);
