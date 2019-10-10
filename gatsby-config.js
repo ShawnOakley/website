@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
     title: "Shawn Oakley",
-    titleTemplate: "%s · Fullstack Developer and UX Designer",
+    titleTemplate: "%s · Fullstack Web Developer and UX Designer",
     description:
-      "Full Stack Developer with years of strong experience in both Front End and Back End Development and a passion for collaboration and mastering new technologies.",
+      "New York based Full Stack Developer/UX designer with years of experience in both Front End and Back End engineering and a passion for spatial computing, digital storytelling, data visualization, and exploratory media.",
     url: "https://www.shawnoakley.com", // No trailing slash allowed!
     // image: "/images/snape.jpg", // Path to your image you placed in the 'static' folder
     // twitterUsername: "@occlumency",
@@ -22,7 +22,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: "Shawn Oakley - Full Stack Web Developer and UX Designer",
+        name: "Shawn Oakley - NYC-based Fullstack Web Developer and UX Designer",
         short_name: "Shawn Oakley",
         start_url: "/",
         background_color: "#88FFFF",
