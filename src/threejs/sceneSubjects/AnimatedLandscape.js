@@ -38,7 +38,8 @@ export default function AnimatedLandscape(scene) {
       vertexShader,
       fragmentShader,
       wireframe:false,
-      fog:true
+      fog:true,
+      side:  THREE.DoubleSide
     });
 
     var terrain = new THREE.Mesh(geometry, material);
@@ -55,10 +56,6 @@ export default function AnimatedLandscape(scene) {
 
     function map (value, start1, stop1, start2, stop2) {
       return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1))
-    }
-  
-    function lerp (start, end, amt){
-      return (1 - amt) * start + amt * end
     }
 
 	this.update = function(time) {
