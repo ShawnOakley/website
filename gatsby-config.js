@@ -3,7 +3,7 @@ module.exports = {
     title: "Shawn Oakley",
     titleTemplate: "%s · Fullstack Web Developer and UX Designer",
     description:
-      "New York based Full Stack Developer/UX designer with years of experience in both Front End and Back End engineering and a passion for spatial computing, digital storytelling, data visualization, and exploratory media.",
+      "New York based Fullstack Developer/UX designer with years of experience in both Front End and Back End engineering and a passion for spatial computing, digital storytelling, data visualization, and exploratory media.",
     url: "https://www.shawnoakley.com", // No trailing slash allowed!
     // image: "/images/snape.jpg", // Path to your image you placed in the 'static' folder
     // twitterUsername: "@occlumency",
@@ -38,6 +38,8 @@ module.exports = {
         crossOrigin: `use-credentials`,
       },
     },    
-    `gatsby-plugin-offline`    
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-netlify`,
+    'gatsby-plugin-robots-txt'    
   ],
 }
