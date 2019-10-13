@@ -16,34 +16,6 @@
 	100% {
 		background-position: 0% 50%;
 	}  
-    // 0.0%  {
-    //   background-color: #e73c7e;
-    //   box-shadow: 0 6px  darken(#e73c7e, 10%);
-    // }
-    // 15.0%  {
-    //   background-color: #ee7752;
-    //   box-shadow: 0 6px darken(#ee7752, 10%);
-    // } /* your chosen 'mid' color */
-    // 30.0%  {
-    //   background-color:#23d5ab;
-    //   box-shadow: 0 6px darken(#23d5ab, 10%);
-    // }
-    // 50%  {
-    //   background-color:#23a6d5;
-    //   box-shadow: 0 6px darken(#23a6d5, 10%);      
-    // }
-    // 70.0%  {
-    //   background-color:#23d5ab;
-    //   box-shadow: 0 6px darken(#23d5ab, 10%);
-    // }  
-    // 85.0%  {
-    //   background-color:#ee7752;
-    //   box-shadow: 0 6px darken(#ee7752, 10%);        
-    // }      
-    // 100.0%  {
-    //   background-color: #e73c7e;
-    //   box-shadow: 0 6px  darken(#e73c7e, 10%); 
-    // }
 }
 
 // https://codepen.io/P1N2O/pen/pyBNzX
@@ -130,7 +102,10 @@
       transition: 0.25s;
       opacity: 0;
     }
-
+    > * {
+      width: 2em;
+      height: 2em;
+    }
   }
 
   .loader-container {
