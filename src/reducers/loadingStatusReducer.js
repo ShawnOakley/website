@@ -1,4 +1,4 @@
-import { LoadingStatusActions } from '../constants/loadingStatusActions';
+import { LoadingStatusActions } from './../constants/loadingStatusConstants';
 
 let defaultState = {
     rootLoaded: false
