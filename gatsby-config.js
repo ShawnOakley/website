@@ -5,6 +5,7 @@ module.exports = {
     description:
       "New York based Fullstack Developer/UX designer with years of experience in both Front End and Back End engineering and a passion for spatial computing, digital storytelling, data visualization, and exploratory media.",
     url: "https://www.shawnoakley.com", // No trailing slash allowed!
+    siteUrl: "https://www.shawnoakley.com", // No trailing slash allowed!
     // image: "/images/snape.jpg", // Path to your image you placed in the 'static' folder
     // twitterUsername: "@occlumency",
   },  
