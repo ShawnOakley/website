@@ -10,6 +10,12 @@ import LottieCarousel from './../components/lottieCarousel';
 import SEO from './../components/SEO';
 
 
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import rootReducer from './../reducers/rootReducer'
+
+const store = createStore(rootReducer)
+
 // https://divdev.io/animating-gatsby-pt/
 
 let EventBus = new EventEmitter();
@@ -19,17 +25,19 @@ export default () => {
   const [displayScene, setDisplayScene] = useState(false);
 
   return (
-    <EventManager eventBus={EventBus}>
-      <SEO />
-      <TextSplash onComplete={setDisplayScene} />
-      <ScreenSplash></ScreenSplash>
-      {displayScene && <div><LottieCarousel  /></div>}
-      {displayScene && (
-        <div>
-          <ThreeContainer sceneName={SCENE_CONSTANTS.SCENE_INTRO} eventBus={EventBus}/>
-        </div>
-      )}
-    </EventManager>
+    <Provider store={store}>
+      <EventManager eventBus={EventBus}>
+        <SEO />
+        <TextSplash onComplete={setDisplayScene} />
+        <ScreenSplash></ScreenSplash>
+        {displayScene && <div><LottieCarousel  /></div>}
+        {displayScene && (
+          <div>
+            <ThreeContainer sceneName={SCENE_CONSTANTS.SCENE_INTRO} eventBus={EventBus}/>
+          </div>
+        )}
+      </EventManager>
+    </Provider>
   )
 
 }
