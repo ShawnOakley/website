@@ -62,6 +62,29 @@
     }
   }
 
+  .loader-container {
+    display: inline-flex;
+    position:absolute;
+    top: 50%;
+    left:50%;
+    background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);    
+    background-size: 400% 400%;
+
+    -webkit-animation-name: buttonColoring;
+    -webkit-animation-duration: 30s;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;    
+    -webkit-animation-play-state: running;
+    $delay: (0.5 + random(5)/10)+'s';
+    animation-name: buttonColoring;
+    animation-duration: 10s;
+    animation-delay: $delay;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;    
+    animation-play-state: running;
+    background-color: #f00;
+  }
+
   .circle-container {
     z-index:500;
     position:absolute;
@@ -106,29 +129,6 @@
       width: 2em;
       height: 2em;
     }
-  }
-
-  .loader-container {
-    display: inline-flex;
-    position:absolute;
-    top: 50%;
-    left:50%;
-    background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);    
-    background-size: 400% 400%;
-
-    -webkit-animation-name: buttonColoring;
-    -webkit-animation-duration: 30s;
-    -webkit-animation-timing-function: ease-in-out;
-    -webkit-animation-iteration-count: infinite;    
-    -webkit-animation-play-state: running;
-    $delay: (0.5 + random(5)/10)+'s';
-    animation-name: buttonColoring;
-    animation-duration: 10s;
-    animation-delay: $delay;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;    
-    animation-play-state: running;
-    background-color: #f00;
   }
 
   .circle-container:hover {
