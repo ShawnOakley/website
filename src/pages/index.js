@@ -25,19 +25,19 @@ export default () => {
   const [displayScene, setDisplayScene] = useState(false);
 
   return (
-    <Provider store={store}>
       <EventManager eventBus={EventBus}>
         <SEO />
-        <TextSplash onComplete={setDisplayScene} />
-        <ScreenSplash></ScreenSplash>
-        {displayScene && <div><LottieCarousel  /></div>}
-        {displayScene && (
-          <div>
-            <ThreeContainer sceneName={SCENE_CONSTANTS.SCENE_INTRO} eventBus={EventBus}/>
-          </div>
-        )}
+        <Provider store={store}>
+          <TextSplash onComplete={setDisplayScene} />
+          <ScreenSplash></ScreenSplash>
+          {displayScene && <div><LottieCarousel  /></div>}
+          {displayScene && (
+            <div>
+              <ThreeContainer sceneName={SCENE_CONSTANTS.SCENE_INTRO} eventBus={EventBus}/>
+            </div>
+          )}
+        </Provider>
       </EventManager>
-    </Provider>
   )
 
 }
