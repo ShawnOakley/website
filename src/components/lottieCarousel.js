@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React, {Fragment, useState, useEffect} from "react";
 import LottiePlayer from './lottiePlayer';
+import "./../scss/tooltip.scss"
 import "./../scss/circle.scss"
 
 const projectAnim = require("./../lottie/projects.json");
@@ -49,16 +50,28 @@ const iconCollection = [
 ]
 
 const LottieCarousel = (props) => {
-    const [setCurrentIndex, ] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(-1);
     let collectionLength = iconCollection.length
 
     return (
-        <div className={'circle-container'}>
-            {
-                iconCollection.map(({resource, label}, idx)=><div className={'loader-container'} onClick={()=>navigate.apply(null, [label])}><LottiePlayer label={label} animationData={resource}/></div>)
-            }
-        </div>
-
+        <Fragment>
+            {  currentIndex > -1 && <div className={'tooltip'}>{iconCollection[currentIndex].label}</div>}       
+            <div className={'circle-container'}>
+                {
+                    iconCollection.map(({resource, label}, idx)=>(
+                        <div 
+                            className={'loader-container'} 
+                            onMouseEnter={()=>setCurrentIndex(idx)} 
+                            onMouseLeave={()=>setCurrentIndex(-1)} 
+                            onClick={()=>navigate.apply(null, [label])}
+                        >
+                                <LottiePlayer label={label} animationData={resource}/>
+                        </div>
+                    )
+                    )
+                }
+            </div>
+        </Fragment>
     );
   };
   
