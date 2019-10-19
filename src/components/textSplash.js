@@ -13,8 +13,8 @@ export default function TextSplash(props) {
 
   let leon, canvas, ctx;
 
-  const sw = 800;
-  const sh = 600;
+  const sw = window.innerWidth;
+  const sh = window.innerHeight;
   const pixelRatio = 2;
   
   const init = () => {
@@ -38,7 +38,7 @@ export default function TextSplash(props) {
         leon = new LeonSans({
           text: 'Welcome!',
           color: ['#ffffff'],
-          size: 80,
+          size: 70,
           weight: 200
         });
 
@@ -48,7 +48,16 @@ export default function TextSplash(props) {
             props.onComplete(true)      
           }
         )
-        .staggerTo(leon.drawing, 1, {delay: 3, value: 0, ease:  Power4.easeOut}, 0.2)        
+        .staggerTo(leon.drawing, 1, {delay: 1.5, value: 0, ease:  Power4.easeOut}, 0.2)    
+        .add(
+          ()=>{
+            // Remove canvas so it doesn't block interactions with the ux
+            var elem = document.querySelector('#text-container');    
+            elem.parentNode.removeChild(elem);
+          }
+          // Set delay on canvas removal so that close anim plays successfully
+          , "+=4"
+        )
 
         requestAnimationFrame(animate);
       }, 250)
