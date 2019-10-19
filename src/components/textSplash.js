@@ -13,8 +13,8 @@ export default function TextSplash(props) {
 
   let leon, canvas, ctx;
 
-  const sw = window ? window.innerWidth : 800;
-  const sh = window ? window.innerHeight : 600;
+  const sw = typeof window !== 'undefined' ? window.innerWidth : 800;
+  const sh = typeof window !== 'undefined' ? window.innerHeight : 600;
   const pixelRatio = 2;
   
   const init = () => {
